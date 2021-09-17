@@ -1,0 +1,26 @@
+.input {
+    background-color: white;
+    color: #1E1064;
+
+    border: 1px solid lightgray;
+    border-radius: 0;
+
+    font-size: 90%;
+
+    padding: 1rem 2rem;
+}
+
+.input:focus-visible {
+    color: white;
+    background-color: #1E1064;
+
+    outline: none;
+}
+
+.input::placeholder {
+    color: #1E1064;
+}
+
+.input:focus-visible::placeholder {
+    color: white;
+}
