@@ -27,7 +27,12 @@ const Signin: React.FC = () => {
 
     return (
         <div className={classes.signin}>
-            <Form inputs={inputs} submitLabel="Zaloguj się" />
+            <Form
+                inputs={inputs}
+                submitLabel="Zaloguj się"
+                submitUrl="/"
+                submitMethod="POST"
+            />
             <div className={classes.bottom}>
                 <Link to="/signup">Zarejestruj się</Link>
                 <Link to="/password/send">Zapomniałeś hasła?</Link>

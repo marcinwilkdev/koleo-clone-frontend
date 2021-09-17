@@ -34,7 +34,12 @@ const Signup: React.FC = () => {
 
     return (
         <div className={classes.signup}>
-            <Form inputs={inputs} submitLabel="Zarejestruj się" />
+            <Form
+                inputs={inputs}
+                submitLabel="Zarejestruj się"
+                submitUrl="/auth/signup"
+                submitMethod="PUT"
+            />
             <p>
                 Masz juz konto?{" "}
                 <Link className={classes.bottomLink} to="/signin">
