@@ -16,7 +16,7 @@ const App: React.FC = () => {
                         <Auth />
                     </Route>
                     <Route path="/signup" exact>
-                        <Auth signup />
+                        <Auth />
                     </Route>
                     <Route path="/" component={NotFound} />
                 </Switch>

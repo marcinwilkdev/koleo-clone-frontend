@@ -1,11 +1,8 @@
 import React from "react";
+import AuthComponent from "../components/Auth/AuthComponent";
 
-interface Props {
-    signup?: boolean;
-}
-
-const Auth: React.FC<Props> = ({ signup }) => {
-    return <div>{signup ? "Signup" : "Signin"}</div>;
+const Auth: React.FC = () => {
+    return <AuthComponent />;
 };
 
 export default Auth;
