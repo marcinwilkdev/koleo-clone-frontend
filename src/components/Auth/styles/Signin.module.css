@@ -37,10 +37,10 @@
     justify-content: space-between;
 }
 
-.signin a {
+.bottom a {
     color: rgb(66, 66, 255);
 }
 
-.signin a:hover {
+.bottom a:hover {
     color: rgb(51, 194, 161);
 }

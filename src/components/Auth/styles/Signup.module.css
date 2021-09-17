@@ -32,10 +32,10 @@
     background-color: rgb(163, 184, 255);
 }
 
-.signup a {
+.bottomLink {
     color: rgb(66, 66, 255);
 }
 
-.signup a:hover {
+.bottomLink:hover {
     color: rgb(51, 194, 161);
 }
