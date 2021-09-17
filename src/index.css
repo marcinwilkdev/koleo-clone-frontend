@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500&display=swap');
+
 * {
     box-sizing: border-box;
 }
@@ -9,7 +11,8 @@ html {
 
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
 }
 
 main {
@@ -34,6 +37,14 @@ pre {
 
 a {
     background-color: transparent;
+    text-decoration: none;
+    color: inherit;
+}
+
+ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 abbr[title] {
