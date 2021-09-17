@@ -9,16 +9,18 @@ const App: React.FC = () => {
     return (
         <Fragment>
             <Header />
-            <Switch>  
-                <Route path="/" component={Index} exact />
-                <Route path="/signin" exact>
-                  <Auth />
-                </Route>
-                <Route path="/signup" exact>
-                  <Auth signup/>
-                </Route>
-                <Route path="/" component={NotFound} />
-            </Switch>
+            <main>
+                <Switch>
+                    <Route path="/" component={Index} exact />
+                    <Route path="/signin" exact>
+                        <Auth />
+                    </Route>
+                    <Route path="/signup" exact>
+                        <Auth signup />
+                    </Route>
+                    <Route path="/" component={NotFound} />
+                </Switch>
+            </main>
         </Fragment>
     );
 };

@@ -1,0 +1,17 @@
+.welcome {
+    color: #1E1064;
+
+    padding: 2rem 3rem;
+
+    font-weight: 400;
+}
+
+.firstLine {
+    font-size: 250%;
+    margin-bottom: 0.5rem;
+}
+
+.secondLine {
+    font-size: 150%;
+    margin: 0;
+}
