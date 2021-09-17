@@ -2,7 +2,7 @@ import React from "react";
 import { UseInputHook } from "../../../hooks/use-input";
 import classes from "./styles/Input.module.css";
 
-interface Props {
+export interface InputInterface {
     name: string;
     className?: string;
     type?: string;
@@ -10,7 +10,7 @@ interface Props {
     hook: UseInputHook;
 }
 
-const Input: React.FC<Props> = ({
+const Input: React.FC<InputInterface> = ({
     name,
     className,
     type,
