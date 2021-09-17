@@ -1,0 +1,20 @@
+.button {
+    background-color: #db2568;
+    color: white;
+
+    text-align: left;
+    font-size: 90%;
+
+    border: none;
+
+    padding: 1rem 2rem;
+
+    cursor: pointer;
+
+    transition: background-color 0.5s ease-out;
+}
+
+.button:hover,
+.button:active {
+    background-color: #a51a4d;
+}

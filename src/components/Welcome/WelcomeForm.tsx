@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../UI/Button/Button";
 import Input from "../UI/Input/Input";
 
 const WelcomeForm: React.FC = () => {
@@ -7,7 +8,7 @@ const WelcomeForm: React.FC = () => {
             <Input placeholder="Z"/>
             <Input placeholder="DO"/>
             <Input type="date" placeholder="Z"/>
-            <button type="submit">ZNAJDŹ POŁAC</button>
+            <Button type="submit"><b>ZNAJDZ</b> POLACZENIE</Button>
         </form>
     );
 };
