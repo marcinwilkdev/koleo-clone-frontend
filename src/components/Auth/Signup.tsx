@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import useInput from "../../hooks/use-input";
 import Form from "../UI/Form/Form";
 import { InputInterface } from "../UI/Input/Input";
-import AuthNav from "./AuthNav";
 
 import classes from "./styles/Signup.module.css";
 
@@ -35,7 +34,6 @@ const Signup: React.FC = () => {
 
     return (
         <div className={classes.signup}>
-            <AuthNav />
             <Form inputs={inputs} submitLabel="Zarejestruj się" />
             <p>
                 Masz juz konto?{" "}

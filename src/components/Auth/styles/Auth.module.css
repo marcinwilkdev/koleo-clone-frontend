@@ -21,12 +21,6 @@
     border-right: 1px solid lightgray;
 }
 
-.form {
-    width: 55%;
-
-    padding: 0 4rem;
-}
-
 .info h3 {
     margin: 0;
 }
@@ -50,4 +44,38 @@
 .info button:active {
     color: rgb(66, 66, 255);
     background-color: white;
+}
+
+.form {
+    width: 55%;
+
+    padding: 0 4rem;
+}
+
+.form form {
+    border-bottom: 1px solid lightgray;
+
+    padding-bottom: 1rem;
+}
+
+.form form input,
+.form form button {
+    width: 100%;
+
+    border-radius: 0.35rem;
+
+    margin: 0.5rem 0;
+}
+
+.form form button {
+    text-align: center;
+}
+
+.form form button:hover,
+.form form button:active {
+    background-color: rgb(27, 225, 165);
+}
+
+.form form button:disabled {
+    background-color: rgb(163, 184, 255);
 }

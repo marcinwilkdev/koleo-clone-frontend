@@ -6,8 +6,7 @@
     font-size: 125%;
 }
 
-.wrapper,
-.helper {
+.wrapper {
     width: 50%;
     display: flex;
     justify-content: center;
@@ -22,7 +21,7 @@
 .chosen {
     padding: 1rem;
     padding-bottom: 0.5rem;
-    width: 50%;
+    width: 100%;
     text-align: center;
 
     border-top-left-radius: 0.25rem;
@@ -30,8 +29,6 @@
 }
 
 .other {
-    width: 100%;
-
     background-color: #0175E2;
     color: white;
     margin: 0.125rem;
@@ -39,8 +36,6 @@
 }
 
 .chosen {
-    width: 100%;
-
     border: 1px solid #0175E2;
     height: 100%;
     border-bottom: none;

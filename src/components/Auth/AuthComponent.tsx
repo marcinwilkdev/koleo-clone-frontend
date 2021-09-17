@@ -1,6 +1,7 @@
 import React from "react";
 import { Route } from "react-router";
 import { Link } from "react-router-dom";
+import AuthNav from "./AuthNav";
 import Signin from "./Signin";
 import Signup from "./Signup";
 import classes from "./styles/Auth.module.css";
@@ -21,6 +22,7 @@ const AuthComponent: React.FC = () => {
                 </Link>
             </div>
             <div className={classes.form}>
+                <AuthNav/>
                 <Route path="/signin">
                     <Signin />
                 </Route>

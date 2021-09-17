@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import useInput from "../../hooks/use-input";
 import Form from "../UI/Form/Form";
 import { InputInterface } from "../UI/Input/Input";
-import AuthNav from "./AuthNav";
 
 import classes from "./styles/Signin.module.css";
 
@@ -28,7 +27,6 @@ const Signin: React.FC = () => {
 
     return (
         <div className={classes.signin}>
-            <AuthNav />
             <Form inputs={inputs} submitLabel="Zaloguj się" />
             <div className={classes.bottom}>
                 <Link to="/signup">Zarejestruj się</Link>
