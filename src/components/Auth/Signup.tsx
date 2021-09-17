@@ -12,10 +12,16 @@ const Signup: React.FC = () => {
     const passwordHook = useInput((value) => value.length >= 8);
     const confirmPasswordHook = useInput((value) => value.length >= 8);
 
+    const isFormValid = emailHook.isValid && passwordHook.isValid && confirmPasswordHook.isValid;
+
+    const submitHandler: React.FormEventHandler<HTMLFormElement> = (event) => {
+        event.preventDefault();
+    }
+
     return (
         <div className={classes.signup}>
             <AuthNav />
-            <form>
+            <form onSubmit={submitHandler}>
                 <Input
                     name="email"
                     type="email"
@@ -34,7 +40,7 @@ const Signup: React.FC = () => {
                     placeholder="Potwierdzenie hasła (co najmniej 8 znaków)"
                     hook={confirmPasswordHook}
                 />
-                <Button type="submit">Zarejestruj się</Button>
+                <Button type="submit" disabled={!isFormValid}>Zarejestruj się</Button>
             </form>
             <p>
                 Masz juz konto?{" "}

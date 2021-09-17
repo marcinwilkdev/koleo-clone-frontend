@@ -11,10 +11,16 @@ const Signin: React.FC = () => {
     const emailHook = useInput((value) => value.includes("@"));
     const passwordHook = useInput((value) => value.length >= 8);
 
+    const isFormValid = emailHook.isValid && passwordHook.isValid;
+
+    const submitHandler: React.FormEventHandler<HTMLFormElement> = (event) => {
+        event.preventDefault();
+    };
+
     return (
         <div className={classes.signin}>
             <AuthNav />
-            <form>
+            <form onSubmit={submitHandler}>
                 <Input
                     name="email"
                     type="email"
@@ -27,7 +33,9 @@ const Signin: React.FC = () => {
                     placeholder="Hasło"
                     hook={passwordHook}
                 />
-                <Button type="submit">Zarejestruj się</Button>
+                <Button type="submit" disabled={!isFormValid}>
+                    Zaloguj się
+                </Button>
             </form>
             <div className={classes.bottom}>
                 <Link to="/signup">Zarejestruj się</Link>
