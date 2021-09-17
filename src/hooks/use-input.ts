@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 
-type UseInput = (validator: (value: string) => boolean) => {
+export interface UseInputHook {
     value: string;
     isValid: boolean;
     showError: boolean;
     changeHandler: React.ChangeEventHandler<HTMLInputElement>;
     blurHandler: React.FocusEventHandler<HTMLInputElement>;
     reset: () => void;
-};
+}
+
+type UseInput = (validator: (value: string) => boolean) => UseInputHook;
 
 const useInput: UseInput = (validator) => {
     const [value, setValue] = useState<string>("");
