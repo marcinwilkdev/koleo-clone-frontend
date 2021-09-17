@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useInput from "../../hooks/use-input";
-import Button from "../UI/Button/Button";
-import Input from "../UI/Input/Input";
+import Form from "../UI/Form/Form";
+import { InputInterface } from "../UI/Input/Input";
 import AuthNav from "./AuthNav";
 
 import classes from "./styles/Signup.module.css";
@@ -12,36 +12,31 @@ const Signup: React.FC = () => {
     const passwordHook = useInput((value) => value.length >= 8);
     const confirmPasswordHook = useInput((value) => value.length >= 8);
 
-    const isFormValid = emailHook.isValid && passwordHook.isValid && confirmPasswordHook.isValid;
-
-    const submitHandler: React.FormEventHandler<HTMLFormElement> = (event) => {
-        event.preventDefault();
-    }
+    const inputs: InputInterface[] = [
+        {
+            name: "email",
+            hook: emailHook,
+            type: "email",
+            placeholder: "Adres e-mail",
+        },
+        {
+            name: "password",
+            hook: passwordHook,
+            type: "password",
+            placeholder: "Hasło (co najmniej 8 znaków)",
+        },
+        {
+            name: "confirmPassword",
+            hook: confirmPasswordHook,
+            type: "password",
+            placeholder: "Potwierdzenie hasła (co najmniej 8 znaków)",
+        },
+    ];
 
     return (
         <div className={classes.signup}>
             <AuthNav />
-            <form onSubmit={submitHandler}>
-                <Input
-                    name="email"
-                    type="email"
-                    placeholder="Adres e-mail"
-                    hook={emailHook}
-                />
-                <Input
-                    name="password"
-                    type="password"
-                    placeholder="Hasło (co najmniej 8 znaków)"
-                    hook={passwordHook}
-                />
-                <Input
-                    name="confirmPassword"
-                    type="password"
-                    placeholder="Potwierdzenie hasła (co najmniej 8 znaków)"
-                    hook={confirmPasswordHook}
-                />
-                <Button type="submit" disabled={!isFormValid}>Zarejestruj się</Button>
-            </form>
+            <Form inputs={inputs} submitLabel="Zarejestruj się" />
             <p>
                 Masz juz konto?{" "}
                 <Link className={classes.bottomLink} to="/signin">
