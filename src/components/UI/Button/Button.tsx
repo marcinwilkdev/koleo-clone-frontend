@@ -4,10 +4,17 @@ import classes from "./styles/Button.module.css";
 interface Props {
     className?: string;
     type?: "button" | "submit" | "reset";
+    disabled?: boolean;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const Button: React.FC<Props> = ({ children, className, type, onClick }) => {
+const Button: React.FC<Props> = ({
+    children,
+    className,
+    type,
+    disabled,
+    onClick,
+}) => {
     let compiledClassName = classes.button;
 
     if (className) {
@@ -15,7 +22,12 @@ const Button: React.FC<Props> = ({ children, className, type, onClick }) => {
     }
 
     return (
-        <button className={compiledClassName} type={type} onClick={onClick}>
+        <button
+            className={compiledClassName}
+            type={type}
+            onClick={onClick}
+            disabled={disabled}
+        >
             {children}
         </button>
     );

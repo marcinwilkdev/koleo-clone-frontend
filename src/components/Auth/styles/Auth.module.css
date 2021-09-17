@@ -4,6 +4,8 @@
     margin: auto;
     margin-top: 3.5rem;
 
+    font-weight: 300;
+
     display: flex;
 }
 
@@ -14,8 +16,6 @@
 .info {
     width: 45%;
 
-    font-weight: 300;
-
     padding: 0 2rem;
 
     border-right: 1px solid lightgray;
@@ -23,6 +23,8 @@
 
 .form {
     width: 55%;
+
+    padding: 0 4rem;
 }
 
 .info h3 {
