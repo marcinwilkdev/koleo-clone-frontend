@@ -1,0 +1,19 @@
+.welcomeForm {
+    margin-top: 1rem;
+
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.welcomeForm input {
+    flex-grow: 24;
+    margin-right: 3.5rem;
+
+    text-transform: uppercase;
+}
+
+.welcomeForm button {
+    flex-grow: 32;
+}

@@ -1,9 +1,14 @@
 .welcome {
-    color: #1E1064;
+    color: #1e1064;
+
+    width: 100%;
 
     padding: 2rem 3rem;
+    padding-bottom: 10rem;
 
     font-weight: 400;
+
+    background-color: lightblue;
 }
 
 .firstLine {
@@ -14,4 +19,6 @@
 .secondLine {
     font-size: 150%;
     margin: 0;
+
+    color: white;
 }
