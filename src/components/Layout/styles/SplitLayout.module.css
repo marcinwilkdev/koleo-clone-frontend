@@ -9,7 +9,7 @@
     display: flex;
 }
 
-.split > div:first-child h3 {
+.split h3 {
     font-size: 200%;
     font-weight: 300;
 }
