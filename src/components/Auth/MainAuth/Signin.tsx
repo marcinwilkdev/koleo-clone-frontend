@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import useAuth from "../../../hooks/use-auth";
 import useInput from "../../../hooks/use-input";
+import authContext from "../../../store/auth-context";
 import Form from "../../UI/Form/Form";
 import { InputInterface } from "../../UI/Input/Input";
 
 import classes from "./styles/Signin.module.css";
 
 const Signin: React.FC = () => {
-    const { login } = useAuth();
+    const { login } = useContext(authContext);
 
     const emailHook = useInput((value) => value.includes("@"));
     const passwordHook = useInput((value) => value.length >= 8);
