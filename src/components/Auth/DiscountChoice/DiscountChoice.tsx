@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 import Button from "../../UI/Button/Button";
 import classes from "./styles/DiscountChoice.module.css";
 
@@ -20,8 +21,8 @@ const DiscountChoice: React.FC = () => {
                 <h3>
                     <b>Czy</b> posiadasz zniżki?
                 </h3>
-                <Button>TAK</Button>
-                <Button>NIE</Button>
+                <Link to="/auth/set-data"><Button>TAK</Button></Link>
+                <Link to="/auth/set-data"><Button>NIE</Button></Link>
                 <div className={classes.additionalInfo}>
                     <h4>
                         Nie wiesz?
