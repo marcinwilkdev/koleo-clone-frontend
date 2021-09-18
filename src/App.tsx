@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import Auth from "./pages/Auth";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import Profile from "./pages/Profile";
 
 const App: React.FC = () => {
     return (
@@ -12,9 +13,8 @@ const App: React.FC = () => {
             <main>
                 <Switch>
                     <Route path="/" component={Index} exact />
-                    <Route path="/auth">
-                        <Auth />
-                    </Route>
+                    <Route path="/auth" component={Auth} />
+                    <Route path="/profile" component={Profile} />
                     <Route path="/" component={NotFound} />
                 </Switch>
             </main>
