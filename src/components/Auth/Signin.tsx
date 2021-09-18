@@ -44,8 +44,8 @@ const Signin: React.FC = () => {
                 afterSubmitCallback={afterSubmitCallback}
             />
             <div className={classes.bottom}>
-                <Link to="/signup">Zarejestruj się</Link>
-                <Link to="/password/send">Zapomniałeś hasła?</Link>
+                <Link to="/auth/signup">Zarejestruj się</Link>
+                <Link to="/auth/password/send">Zapomniałeś hasła?</Link>
             </div>
         </div>
     );

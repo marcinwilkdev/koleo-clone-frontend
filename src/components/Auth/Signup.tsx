@@ -42,7 +42,7 @@ const Signup: React.FC = () => {
             />
             <p>
                 Masz juz konto?{" "}
-                <Link className={classes.bottomLink} to="/signin">
+                <Link className={classes.bottomLink} to="/auth/signin">
                     Zaloguj się
                 </Link>
             </p>

@@ -31,8 +31,8 @@ const AuthNav: React.FC = () => {
 
     return (
         <div className={classes.nav}>
-            <AuthNavItem label="Zarejestruj się" path="/signup" chosen={pathname === "/signup"} />
-            <AuthNavItem label="Zaloguj się" path="/signin" chosen={pathname === "/signin"} />
+            <AuthNavItem label="Zarejestruj się" path="/auth/signup" chosen={pathname === "/auth/signup"} />
+            <AuthNavItem label="Zaloguj się" path="/auth/signin" chosen={pathname === "/auth/signin"} />
         </div>
     );
 };

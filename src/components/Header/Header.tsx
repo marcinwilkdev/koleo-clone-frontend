@@ -7,8 +7,8 @@ const Header: React.FC = () => {
         <header className={classes.header}>
             <h3><Link to="/">KOLEO</Link></h3>
             <div className={classes.controls}>
-                <NavLink to="/signin" activeClassName={classes.active}>zaloguj się</NavLink>
-                <NavLink to="/signup" activeClassName={classes.active}>zarejestruj się</NavLink>
+                <NavLink to="/auth/signin" activeClassName={classes.active}>zaloguj się</NavLink>
+                <NavLink to="/auth/signup" activeClassName={classes.active}>zarejestruj się</NavLink>
             </div>
         </header>
     );

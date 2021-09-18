@@ -12,10 +12,7 @@ const App: React.FC = () => {
             <main>
                 <Switch>
                     <Route path="/" component={Index} exact />
-                    <Route path="/signin" exact>
-                        <Auth />
-                    </Route>
-                    <Route path="/signup" exact>
+                    <Route path="/auth">
                         <Auth />
                     </Route>
                     <Route path="/" component={NotFound} />

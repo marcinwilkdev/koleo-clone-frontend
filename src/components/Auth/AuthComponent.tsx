@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router";
+import { Redirect, Route, Switch } from "react-router";
 import { Link } from "react-router-dom";
 import SplitLayout from "../Layout/SplitLayout";
 import AuthNav from "./AuthNav";
@@ -23,13 +23,18 @@ const AuthComponent: React.FC = () => {
                 </Link>
             </div>
             <div className={classes.form}>
-                <AuthNav/>
-                <Route path="/signin">
-                    <Signin />
-                </Route>
-                <Route path="/signup">
-                    <Signup />
-                </Route>
+                <AuthNav />
+                <Switch>
+                    <Route path="/auth/signin" exact>
+                        <Signin />
+                    </Route>
+                    <Route path="/auth/signup" exact>
+                        <Signup />
+                    </Route>
+                    <Route path="/auth/">
+                        <Redirect to="/not-found" />
+                    </Route>
+                </Switch>
             </div>
         </SplitLayout>
     );
