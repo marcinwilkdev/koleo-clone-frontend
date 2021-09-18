@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/use-auth";
 import useInput from "../../hooks/use-input";
 import Form from "../UI/Form/Form";
 import { InputInterface } from "../UI/Input/Input";
@@ -7,6 +8,8 @@ import { InputInterface } from "../UI/Input/Input";
 import classes from "./styles/Signin.module.css";
 
 const Signin: React.FC = () => {
+    const { login } = useAuth();
+
     const emailHook = useInput((value) => value.includes("@"));
     const passwordHook = useInput((value) => value.length >= 8);
 
@@ -28,8 +31,7 @@ const Signin: React.FC = () => {
     const afterSubmitCallback = (data: any) => {
         const formattedData = data as { message: string; token: string };
 
-        localStorage.setItem("isLoggedIn", "true");
-        localStorage.setItem("token", formattedData.token);
+        login(formattedData.token);
     };
 
     return (
