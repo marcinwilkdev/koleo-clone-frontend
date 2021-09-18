@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Link, Switch, Route, Redirect } from "react-router-dom";
-import AuthNav from "../AuthNav";
+import MainAuthNav from "./MainAuthNav";
 import Signin from "./Signin";
 import Signup from "./Signup";
 
@@ -22,7 +22,7 @@ const MainAuth: React.FC = () => {
                 </Link>
             </div>
             <div className={classes.form}>
-                <AuthNav />
+                <MainAuthNav />
                 <Switch>
                     <Route path="/auth/signin" exact>
                         <Signin />

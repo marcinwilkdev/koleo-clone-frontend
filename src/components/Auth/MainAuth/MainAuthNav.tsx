@@ -2,13 +2,13 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import classes from "./styles/AuthNav.module.css";
 
-interface AuthNavItemProps {
+interface Props {
     path: string;
     label: string;
     chosen: boolean;
 }
 
-const AuthNavItem: React.FC<AuthNavItemProps> = ({ path, label, chosen }) => {
+const NavItem: React.FC<Props> = ({ path, label, chosen }) => {
     let compiledClassName = classes.wrapper;
 
     if(!chosen) {
@@ -26,15 +26,15 @@ const AuthNavItem: React.FC<AuthNavItemProps> = ({ path, label, chosen }) => {
     );
 };
 
-const AuthNav: React.FC = () => {
+const MainAuthNav: React.FC = () => {
     const { pathname } = useLocation();
 
     return (
         <div className={classes.nav}>
-            <AuthNavItem label="Zarejestruj się" path="/auth/signup" chosen={pathname === "/auth/signup"} />
-            <AuthNavItem label="Zaloguj się" path="/auth/signin" chosen={pathname === "/auth/signin"} />
+            <NavItem label="Zarejestruj się" path="/auth/signup" chosen={pathname === "/auth/signup"} />
+            <NavItem label="Zaloguj się" path="/auth/signin" chosen={pathname === "/auth/signin"} />
         </div>
     );
 };
 
-export default AuthNav;
+export default MainAuthNav;
