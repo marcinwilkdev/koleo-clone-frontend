@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import useInput from "../../hooks/use-input";
 import Form from "../UI/Form/Form";
 import { InputInterface } from "../UI/Input/Input";
@@ -7,6 +7,8 @@ import { InputInterface } from "../UI/Input/Input";
 import classes from "./styles/Signup.module.css";
 
 const Signup: React.FC = () => {
+    const history = useHistory();
+
     const emailHook = useInput((value) => value.includes("@"));
     const passwordHook = useInput((value) => value.length >= 8);
     const confirmPasswordHook = useInput((value) => value.length >= 8);
@@ -32,6 +34,10 @@ const Signup: React.FC = () => {
         },
     ];
 
+    const afterSubmitCallback = () => {
+        history.push("/auth/discount-choice");
+    };
+
     return (
         <div className={classes.signup}>
             <Form
@@ -39,6 +45,7 @@ const Signup: React.FC = () => {
                 submitLabel="Zarejestruj się"
                 submitUrl="/auth/signup"
                 submitMethod="PUT"
+                afterSubmitCallback={afterSubmitCallback}
             />
             <p>
                 Masz juz konto?{" "}
