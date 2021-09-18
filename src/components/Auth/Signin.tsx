@@ -25,13 +25,21 @@ const Signin: React.FC = () => {
         },
     ];
 
+    const afterSubmitCallback = (data: any) => {
+        const formattedData = data as { message: string; token: string };
+
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("token", formattedData.token);
+    };
+
     return (
         <div className={classes.signin}>
             <Form
                 inputs={inputs}
                 submitLabel="Zaloguj się"
-                submitUrl="/"
+                submitUrl="/auth/signin"
                 submitMethod="POST"
+                afterSubmitCallback={afterSubmitCallback}
             />
             <div className={classes.bottom}>
                 <Link to="/signup">Zarejestruj się</Link>

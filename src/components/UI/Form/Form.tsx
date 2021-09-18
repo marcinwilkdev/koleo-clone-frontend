@@ -8,6 +8,7 @@ interface Props {
     submitLabel: string;
     submitUrl: string;
     submitMethod: string;
+    afterSubmitCallback?: (data: any) => void;
 }
 
 const Form: React.FC<Props> = ({
@@ -15,6 +16,7 @@ const Form: React.FC<Props> = ({
     submitLabel,
     submitUrl,
     submitMethod,
+    afterSubmitCallback
 }) => {
     const { sendRequest } = useHttp();
 
@@ -34,9 +36,11 @@ const Form: React.FC<Props> = ({
 
         inputs.forEach((input) => (body[input.name] = input.hook.value));
 
-        await sendRequest(submitUrl, submitMethod, body);
+        const data = await sendRequest(submitUrl, submitMethod, body);
 
         inputs.forEach((input) => input.hook.reset());
+
+        if(afterSubmitCallback) afterSubmitCallback(data);
     };
 
     return (
