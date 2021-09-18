@@ -22,6 +22,12 @@
     border-right: 1px solid lightgray;
 }
 
+.split > div:nth-child(2) {
+    width: 55%;
+
+    padding: 0 6rem;
+}
+
 .split > div:first-child button {
     margin-top: 1.5rem;
 

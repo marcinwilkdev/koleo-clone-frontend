@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import useAuth from "../../hooks/use-auth";
-import useInput from "../../hooks/use-input";
-import Form from "../UI/Form/Form";
-import { InputInterface } from "../UI/Input/Input";
+import useAuth from "../../../hooks/use-auth";
+import useInput from "../../../hooks/use-input";
+import Form from "../../UI/Form/Form";
+import { InputInterface } from "../../UI/Input/Input";
 
 import classes from "./styles/Signin.module.css";
 

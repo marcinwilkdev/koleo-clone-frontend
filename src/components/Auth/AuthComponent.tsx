@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Switch } from "react-router";
 import SplitLayout from "../Layout/SplitLayout";
-import DiscountChoice from "./DiscountChoice";
-import MainAuth from "./MainAuth";
+import DiscountChoice from "./DiscountChoice/DiscountChoice";
+import MainAuth from "./MainAuth/MainAuth";
 
 const AuthComponent: React.FC = () => {
     return (

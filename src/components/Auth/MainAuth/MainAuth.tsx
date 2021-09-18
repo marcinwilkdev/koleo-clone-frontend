@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Link, Switch, Route, Redirect } from "react-router-dom";
-import AuthNav from "./AuthNav";
+import AuthNav from "../AuthNav";
 import Signin from "./Signin";
 import Signup from "./Signup";
 

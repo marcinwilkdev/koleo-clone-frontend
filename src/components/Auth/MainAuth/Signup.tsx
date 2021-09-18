@@ -1,8 +1,8 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import useInput from "../../hooks/use-input";
-import Form from "../UI/Form/Form";
-import { InputInterface } from "../UI/Input/Input";
+import useInput from "../../../hooks/use-input";
+import Form from "../../UI/Form/Form";
+import { InputInterface } from "../../UI/Input/Input";
 
 import classes from "./styles/Signup.module.css";
 
