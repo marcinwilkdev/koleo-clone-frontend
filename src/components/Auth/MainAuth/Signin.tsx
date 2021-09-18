@@ -31,6 +31,8 @@ const Signin: React.FC = () => {
     const afterSubmitCallback = (data: any) => {
         const formattedData = data as { message: string; token: string };
 
+        if(!formattedData.token) return;
+
         login(formattedData.token);
     };
 
