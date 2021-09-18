@@ -1,6 +1,7 @@
 import React from "react";
 import { Route } from "react-router";
 import { Link } from "react-router-dom";
+import SplitLayout from "../Layout/SplitLayout";
 import AuthNav from "./AuthNav";
 import Signin from "./Signin";
 import Signup from "./Signup";
@@ -8,11 +9,11 @@ import classes from "./styles/Auth.module.css";
 
 const AuthComponent: React.FC = () => {
     return (
-        <div className={classes.auth}>
-            <div className={classes.info}>
-                <p className={classes.h3}>
+        <SplitLayout>
+            <div>
+                <h3>
                     <b>Dlaczego</b> warto założyć konto?
-                </p>
+                </h3>
                 <p>
                     Dzięki KOLEO w jednym miejscu kupisz wszystkie bilety na
                     wszystkie pociągi. Szybko, bezpiecznie i wygodnie.
@@ -30,7 +31,7 @@ const AuthComponent: React.FC = () => {
                     <Signup />
                 </Route>
             </div>
-        </div>
+        </SplitLayout>
     );
 };
 

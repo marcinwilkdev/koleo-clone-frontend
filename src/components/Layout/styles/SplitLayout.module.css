@@ -1,0 +1,44 @@
+.split {
+    width: 75%;
+
+    margin: auto;
+    margin-top: 3.5rem;
+
+    font-weight: 300;
+
+    display: flex;
+}
+
+.split > div:first-child h3 {
+    font-size: 200%;
+    font-weight: 300;
+}
+
+.split > div:first-child {
+    width: 45%;
+
+    padding: 0 2rem;
+
+    border-right: 1px solid lightgray;
+}
+
+.split > div:first-child button {
+    margin-top: 1.5rem;
+
+    border: 1px solid rgb(66, 66, 255);
+
+    padding: 1.5rem 4rem;
+
+    background-color: rgb(66, 66, 255);
+    color: white;
+
+    cursor: pointer;
+
+    transition: all 0.5s ease-out;
+}
+
+.split > div:first-child button:hover,
+.split > div:first-child button:active {
+    color: rgb(66, 66, 255);
+    background-color: white;
+}
