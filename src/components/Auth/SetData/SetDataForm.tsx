@@ -1,6 +1,8 @@
 import React from "react";
 import useInput from "../../../hooks/use-input";
-import Form, { FormInputInterface } from "../../UI/Form/Form";
+import Button from "../../UI/Button/Button";
+import Input from "../../UI/Input/Input";
+import Title from "../../UI/Title/Title";
 
 import classes from "./styles/SetDataForm.module.css";
 
@@ -13,49 +15,36 @@ const SetDataForm: React.FC<Props> = ({}) => {
     const monthHook = useInput((value) => value.trim() !== "");
     const yearHook = useInput((value) => value.trim() !== "");
 
-    const inputs: FormInputInterface[] = [
-        {
-            name: "name",
-            hook: nameHook,
-            placeholder: "* Imię",
-            label: "Imię i nazwisko",
-        },
-        {
-            name: "lastName",
-            hook: lastNameHook,
-            placeholder: "* Nazwisko",
-        },
-        {
-            name: "day",
-            hook: dayHook,
-            type: "number",
-            placeholder: "* Dzień",
-            label: "Data urodzenia",
-            className: `${classes.date} ${classes.day}`
-        },
-        {
-            name: "month",
-            hook: monthHook,
-            placeholder: "* Miesiąc",
-            className: classes.date
-        },
-        {
-            name: "year",
-            hook: yearHook,
-            type: "number",
-            placeholder: "* Rok",
-            className: classes.date
-        },
-    ];
+    const isFormValid =
+        nameHook.isValid &&
+        lastNameHook.isValid &&
+        dayHook.isValid &&
+        monthHook.isValid &&
+        yearHook.isValid;
 
     return (
-        <Form
-            className={classes.form}
-            inputs={inputs}
-            submitLabel="Zapisz"
-            submitMethod="POST"
-            submitUrl=""
-        />
+        <form className={classes.form}>
+            <label htmlFor="name">
+                <Title title="Imię i nazwisko" />
+            </label>
+            <Input name="name" hook={nameHook} placeholder="* Imię" />
+            <Input
+                name="lastName"
+                hook={lastNameHook}
+                placeholder="* Nazwisko"
+            />
+            <label htmlFor="day">
+                <Title title="Data urodzenia" />
+            </label>
+            <div>
+                <Input name="day" hook={dayHook} placeholder="* Dzień" />
+                <Input name="month" hook={monthHook} placeholder="* Miesiąc" />
+                <Input name="year" hook={yearHook} placeholder="* Rok" />
+            </div>
+            <Button type="submit" disabled={!isFormValid}>
+                Zapisz
+            </Button>
+        </form>
     );
 };
 
