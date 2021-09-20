@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import useHttp from "../../../hooks/use-http";
 import Button from "../Button/Button";
 import Input, { InputInterface } from "../Input/Input";
+import Title from "../Title/Title";
 
 import classes from "./styles/Form.module.css";
 
@@ -62,7 +63,9 @@ const Form: React.FC<Props> = ({
             {inputs.map((input) => (
                 <Fragment>
                     {input.label ? (
-                        <label htmlFor={input.name}>{input.label}</label>
+                        <label htmlFor={input.name}>
+                            <Title title={input.label} />
+                        </label>
                     ) : null}
                     <Input
                         key={input.name}
