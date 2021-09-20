@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { Link, Switch, Route, Redirect } from "react-router-dom";
+import Title from "../../UI/Title/Title";
 import MainAuthNav from "./MainAuthNav";
 import Signin from "./Signin";
 import Signup from "./Signup";
@@ -11,7 +12,7 @@ const MainAuth: React.FC = () => {
         <Fragment>
             <div>
                 <h3>
-                    <b>Dlaczego</b> warto założyć konto?
+                    <Title title="Dlaczego warto założyć konto?"/>
                 </h3>
                 <p>
                     Dzięki KOLEO w jednym miejscu kupisz wszystkie bilety na

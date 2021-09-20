@@ -2,6 +2,7 @@ import React from "react";
 import useInput from "../../hooks/use-input";
 import Button from "../UI/Button/Button";
 import Input from "../UI/Input/Input";
+import Title from "../UI/Title/Title";
 
 import classes from "./styles/WelcomeForm.module.css";
 
@@ -12,10 +13,12 @@ const WelcomeForm: React.FC = () => {
 
     return (
         <form className={classes.welcomeForm}>
-            <Input name="from" placeholder="Z" hook={fromHook}/>
-            <Input name="to" placeholder="DO" hook={toHook}/>
-            <Input name="date" type="date" placeholder="Z" hook={dateHook}/>
-            <Button type="submit"><b>ZNAJDŹ</b> POŁĄCZENIE</Button>
+            <Input name="from" placeholder="Z" hook={fromHook} />
+            <Input name="to" placeholder="DO" hook={toHook} />
+            <Input name="date" type="date" placeholder="Z" hook={dateHook} />
+            <Button type="submit">
+                <Title title="ZNAJDŹ POŁĄCZENIE" />
+            </Button>
         </form>
     );
 };
