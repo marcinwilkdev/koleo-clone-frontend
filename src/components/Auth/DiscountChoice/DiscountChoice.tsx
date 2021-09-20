@@ -4,7 +4,11 @@ import Button from "../../UI/Button/Button";
 import Title from "../../UI/Title/Title";
 import classes from "./styles/DiscountChoice.module.css";
 
-const DiscountChoice: React.FC = () => {
+interface Props {
+    applyDiscount: () => void;
+}
+
+const DiscountChoice: React.FC<Props> = ({ applyDiscount }) => {
     return (
         <Fragment>
             <div>
@@ -23,7 +27,7 @@ const DiscountChoice: React.FC = () => {
                     <Title title="Czy posiadasz zniżki?" />
                 </h3>
                 <Link to="/auth/set-data">
-                    <Button>TAK</Button>
+                    <Button onClick={applyDiscount}>TAK</Button>
                 </Link>
                 <Link to="/auth/set-data">
                     <Button>NIE</Button>

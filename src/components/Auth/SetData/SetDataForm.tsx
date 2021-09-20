@@ -8,10 +8,13 @@ import Title from "../../UI/Title/Title";
 
 import classes from "./styles/SetDataForm.module.css";
 
-interface Props {}
+interface Props {
+    discount: boolean;
+}
 
-const SetDataForm: React.FC<Props> = ({}) => {
+const SetDataForm: React.FC<Props> = ({discount}) => {
     const history = useHistory();
+    const { sendRequest } = useHttp();
 
     const nameHook = useInput((value) => value.trim() !== "");
     const lastNameHook = useInput((value) => value.trim() !== "");
@@ -37,11 +40,20 @@ const SetDataForm: React.FC<Props> = ({}) => {
     ) => {
         event.preventDefault();
 
+        const data = await sendRequest("/auth/set-data", "PUT", {
+            name: nameHook.value,
+            lastName: lastNameHook.value,
+            day: dayHook.value,
+            month: monthHook.value,
+            year: yearHook.value,
+        });
+
         history.replace("/");
     };
 
     return (
         <form className={classes.form} onSubmit={submitHandler}>
+            <input type="hidden" name="discount" value={discount ? "true" : "false"} />
             <label htmlFor="name">
                 <Title title="Imię i nazwisko" />
             </label>

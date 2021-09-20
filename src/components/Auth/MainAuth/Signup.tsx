@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import useHttp from "../../../hooks/use-http";
 import useInput from "../../../hooks/use-input";
+import authContext from "../../../store/auth-context";
 import Button from "../../UI/Button/Button";
 import Input from "../../UI/Input/Input";
 
@@ -10,6 +11,7 @@ import classes from "./styles/Signup.module.css";
 const Signup: React.FC = () => {
     const history = useHistory();
     const { sendRequest } = useHttp();
+    const authCtx = useContext(authContext);
 
     const emailHook = useInput((value) => value.includes("@"));
     const passwordHook = useInput((value) => value.length >= 8);
@@ -30,6 +32,10 @@ const Signup: React.FC = () => {
             password: passwordHook.value,
             confirmPassword: confirmPasswordHook.value,
         });
+
+        if(!data.token) return;
+
+        authCtx.login(data.token);
 
         history.push("/auth/discount-choice");
     };

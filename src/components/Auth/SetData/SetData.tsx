@@ -3,12 +3,16 @@ import Title from "../../UI/Title/Title";
 import SetDataForm from "./SetDataForm";
 import classes from "./styles/SetData.module.css";
 
-const SetData: React.FC = () => {
+interface Props {
+    discount: boolean;
+}
+
+const SetData: React.FC<Props> = ({ discount }) => {
     return (
         <Fragment>
             <div>
                 <h3>
-                    <Title title="Do czego potrzebne są nam Twoje dane?"/>
+                    <Title title="Do czego potrzebne są nam Twoje dane?" />
                 </h3>
                 <p>
                     Nie obawiaj się - wszystkie dane, które podajesz są
@@ -27,9 +31,9 @@ const SetData: React.FC = () => {
             </div>
             <div>
                 <h3>
-                    <Title title="Podaj proszę swoje dane"/>
+                    <Title title="Podaj proszę swoje dane" />
                 </h3>
-                <SetDataForm />
+                <SetDataForm discount={discount} />
             </div>
         </Fragment>
     );
