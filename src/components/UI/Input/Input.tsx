@@ -7,7 +7,7 @@ export interface InputInterface {
     className?: string;
     type?: string;
     placeholder?: string;
-    hook: UseInputHook;
+    hook: UseInputHook<HTMLInputElement>;
 }
 
 const Input: React.FC<InputInterface> = ({

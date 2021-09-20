@@ -36,10 +36,39 @@ const SetDataForm: React.FC<Props> = ({}) => {
             <label htmlFor="day">
                 <Title title="Data urodzenia" />
             </label>
-            <div>
-                <Input name="day" hook={dayHook} placeholder="* Dzień" />
-                <Input name="month" hook={monthHook} placeholder="* Miesiąc" />
-                <Input name="year" hook={yearHook} placeholder="* Rok" />
+            <div className={classes.date}>
+                <Input
+                    name="day"
+                    type="number"
+                    hook={dayHook}
+                    placeholder="* Dzień"
+                />
+                <select
+                    name="month"
+                    value={monthHook.value}
+                    onChange={monthHook.changeHandler}
+                    onBlur={monthHook.blurHandler}
+                >
+                    <option value="" disabled selected>* Miesiąc</option>
+                    <option value="1">stycznia</option>
+                    <option value="2">lutego</option>
+                    <option value="3">marca</option>
+                    <option value="4">kwietnia</option>
+                    <option value="5">maja</option>
+                    <option value="6">czerwca</option>
+                    <option value="7">lipca</option>
+                    <option value="8">sierpnia</option>
+                    <option value="9">września</option>
+                    <option value="10">października</option>
+                    <option value="11">listopada</option>
+                    <option value="12">grudnia</option>
+                </select>
+                <Input
+                    name="year"
+                    type="number"
+                    hook={yearHook}
+                    placeholder="* Rok"
+                />
             </div>
             <Button type="submit" disabled={!isFormValid}>
                 Zapisz

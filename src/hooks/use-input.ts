@@ -1,30 +1,28 @@
 import React, { useState } from "react";
 
-export interface UseInputHook {
+export interface UseInputHook<T> {
     value: string;
     isValid: boolean;
     showError: boolean;
-    changeHandler: React.ChangeEventHandler<HTMLInputElement>;
-    blurHandler: React.FocusEventHandler<HTMLInputElement>;
+    changeHandler: React.ChangeEventHandler<T>;
+    blurHandler: React.FocusEventHandler<T>;
     reset: () => void;
 }
 
-type UseInput = (validator: (value: string) => boolean) => UseInputHook;
-
-const useInput: UseInput = (validator) => {
+const useInput = <T extends HTMLSelectElement & HTMLInputElement>(
+    validator: (value: string) => boolean
+): UseInputHook<T> => {
     const [value, setValue] = useState<string>("");
     const [isTouched, setIsTouched] = useState<boolean>(false);
 
     const isValid = validator(value);
     const showError = !isValid && isTouched;
 
-    const changeHandler: React.ChangeEventHandler<HTMLInputElement> = (
-        event
-    ) => {
+    const changeHandler: React.ChangeEventHandler<T> = (event) => {
         setValue(event.target.value);
     };
 
-    const blurHandler: React.FocusEventHandler<HTMLInputElement> = () => {
+    const blurHandler: React.FocusEventHandler<T> = () => {
         setIsTouched(true);
     };
 

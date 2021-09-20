@@ -2,13 +2,38 @@
     margin-top: 4rem;
 }
 
-.form input {
+.form label {
+    display: block;
+    margin: 1rem 0;
+}
+
+.form input,
+.form select {
     width: 100%;
 
     font-weight: 300;
 
     margin: 0.5rem 0;
     padding: 1rem;
+}
+
+.form select {
+    background-color: white;
+    color: #1E1064;
+
+    border: 1px solid lightgray;
+    border-radius: 0;
+
+    font-size: 90%;
+
+    padding: 1rem 0.5rem;
+}
+
+.form select:focus-visible {
+    color: white;
+    background-color: #1E1064;
+
+    outline: none;
 }
 
 .form button {
@@ -30,12 +55,13 @@
     background-color: rgb(163, 184, 255);
 }
 
-.form input.date {
+.date input,
+.date select {
     width: 30%;
 
     margin-left: 5%;
 }
 
-.form input.day {
+.date input:first-child {
     margin-left: 0;
 }
