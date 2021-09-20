@@ -1,4 +1,6 @@
 import React from "react";
+import { useHistory } from "react-router";
+import useHttp from "../../../hooks/use-http";
 import useInput from "../../../hooks/use-input";
 import Button from "../../UI/Button/Button";
 import Input from "../../UI/Input/Input";
@@ -9,11 +11,19 @@ import classes from "./styles/SetDataForm.module.css";
 interface Props {}
 
 const SetDataForm: React.FC<Props> = ({}) => {
+    const history = useHistory();
+
     const nameHook = useInput((value) => value.trim() !== "");
     const lastNameHook = useInput((value) => value.trim() !== "");
-    const dayHook = useInput((value) => value.trim() !== "");
+    const dayHook = useInput((value) => +value > 0 && +value <= 31);
     const monthHook = useInput((value) => value.trim() !== "");
     const yearHook = useInput((value) => value.trim() !== "");
+
+    const dateHasErrors =
+        dayHook.showError || monthHook.showError || yearHook.showError;
+
+    const tooOld = new Date().getFullYear() - +yearHook.value > 115;
+    const tooYoung = new Date().getFullYear() - +yearHook.value < 16;
 
     const isFormValid =
         nameHook.isValid &&
@@ -22,17 +32,31 @@ const SetDataForm: React.FC<Props> = ({}) => {
         monthHook.isValid &&
         yearHook.isValid;
 
+    const submitHandler: React.FormEventHandler<HTMLFormElement> = async (
+        event
+    ) => {
+        event.preventDefault();
+
+        history.replace("/");
+    };
+
     return (
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={submitHandler}>
             <label htmlFor="name">
                 <Title title="Imię i nazwisko" />
             </label>
             <Input name="name" hook={nameHook} placeholder="* Imię" />
+            {nameHook.showError && (
+                <div className={classes.error}>Nieprawidłowe imię.</div>
+            )}
             <Input
                 name="lastName"
                 hook={lastNameHook}
                 placeholder="* Nazwisko"
             />
+            {lastNameHook.showError && (
+                <div className={classes.error}>Nieprawidłowe nazwisko.</div>
+            )}
             <label htmlFor="day">
                 <Title title="Data urodzenia" />
             </label>
@@ -49,7 +73,9 @@ const SetDataForm: React.FC<Props> = ({}) => {
                     onChange={monthHook.changeHandler}
                     onBlur={monthHook.blurHandler}
                 >
-                    <option value="" disabled selected>* Miesiąc</option>
+                    <option value="" disabled selected>
+                        * Miesiąc
+                    </option>
                     <option value="1">stycznia</option>
                     <option value="2">lutego</option>
                     <option value="3">marca</option>
@@ -70,6 +96,19 @@ const SetDataForm: React.FC<Props> = ({}) => {
                     placeholder="* Rok"
                 />
             </div>
+            {dateHasErrors && (
+                <div className={classes.error}>Nieprawidłowa data.</div>
+            )}
+            {!dateHasErrors && yearHook.value !== "" && tooOld && (
+                <div className={classes.error}>
+                    Aby zostać użytkownikiem KOLEO musisz mieć poniżej 115 lat.
+                </div>
+            )}
+            {!dateHasErrors && yearHook.value !== "" && tooYoung && (
+                <div className={classes.error}>
+                    Aby zostać użytkownikiem KOLEO musisz mieć powyzej 16 lat.
+                </div>
+            )}
             <Button type="submit" disabled={!isFormValid}>
                 Zapisz
             </Button>
