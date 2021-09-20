@@ -26,6 +26,7 @@ const Input: React.FC<InputInterface> = ({
     return (
         <input
             name={name}
+            id={name}
             className={compiledClassName}
             type={type}
             placeholder={placeholder}

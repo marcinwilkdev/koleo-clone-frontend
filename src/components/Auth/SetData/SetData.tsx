@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import SetDataForm from "./SetDataForm";
 import classes from "./styles/SetData.module.css";
 
 const SetData: React.FC = () => {
@@ -27,9 +28,7 @@ const SetData: React.FC = () => {
                 <h3>
                     <b>Podaj</b> proszę swoje dane
                 </h3>
-                <div>
-                    Data Form
-                </div>
+                <SetDataForm />
             </div>
         </Fragment>
     );

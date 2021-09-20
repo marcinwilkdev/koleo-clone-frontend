@@ -1,10 +1,17 @@
-import React from "react";
+import React, { Fragment } from "react";
 import useHttp from "../../../hooks/use-http";
 import Button from "../Button/Button";
 import Input, { InputInterface } from "../Input/Input";
 
+import classes from "./styles/Form.module.css";
+
+export interface FormInputInterface extends InputInterface {
+    label?: string;
+}
+
 interface Props {
-    inputs: InputInterface[];
+    className?: string;
+    inputs: FormInputInterface[];
     submitLabel: string;
     submitUrl: string;
     submitMethod: string;
@@ -12,11 +19,12 @@ interface Props {
 }
 
 const Form: React.FC<Props> = ({
+    className,
     inputs,
     submitLabel,
     submitUrl,
     submitMethod,
-    afterSubmitCallback
+    afterSubmitCallback,
 }) => {
     const { sendRequest } = useHttp();
 
@@ -40,19 +48,31 @@ const Form: React.FC<Props> = ({
 
         inputs.forEach((input) => input.hook.reset());
 
-        if(afterSubmitCallback) afterSubmitCallback(data);
+        if (afterSubmitCallback) afterSubmitCallback(data);
     };
 
+    let compiledClassName = classes.form;
+
+    if (className) {
+        compiledClassName += " " + className;
+    }
+
     return (
-        <form onSubmit={submitHandler}>
+        <form onSubmit={submitHandler} className={compiledClassName}>
             {inputs.map((input) => (
-                <Input
-                    key={input.name}
-                    name={input.name}
-                    type={input.type}
-                    placeholder={input.placeholder}
-                    hook={input.hook}
-                />
+                <Fragment>
+                    {input.label ? (
+                        <label htmlFor={input.name}>{input.label}</label>
+                    ) : null}
+                    <Input
+                        key={input.name}
+                        className={input.className}
+                        name={input.name}
+                        type={input.type}
+                        placeholder={input.placeholder}
+                        hook={input.hook}
+                    />
+                </Fragment>
             ))}
             <Button type="submit" disabled={!isFormValid}>
                 {submitLabel}
