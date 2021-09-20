@@ -33,7 +33,7 @@ const Signup: React.FC = () => {
             confirmPassword: confirmPasswordHook.value,
         });
 
-        if(!data.token) return;
+        if(!data || !data.token) return;
 
         authCtx.login(data.token);
 
@@ -62,7 +62,7 @@ const Signup: React.FC = () => {
                     placeholder="Potwierdzenie hasła (co najmniej 8 znaków)"
                 />
                 <Button type="submit" disabled={!isFormValid}>
-                    Zaloguj się
+                    Zarejestruj się
                 </Button>
             </form>
             <p>

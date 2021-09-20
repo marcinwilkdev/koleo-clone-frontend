@@ -41,6 +41,7 @@ const SetDataForm: React.FC<Props> = ({discount}) => {
         event.preventDefault();
 
         const data = await sendRequest("/auth/set-data", "PUT", {
+            discount: discount ? "true" : "false",
             name: nameHook.value,
             lastName: lastNameHook.value,
             day: dayHook.value,
@@ -53,7 +54,6 @@ const SetDataForm: React.FC<Props> = ({discount}) => {
 
     return (
         <form className={classes.form} onSubmit={submitHandler}>
-            <input type="hidden" name="discount" value={discount ? "true" : "false"} />
             <label htmlFor="name">
                 <Title title="Imię i nazwisko" />
             </label>

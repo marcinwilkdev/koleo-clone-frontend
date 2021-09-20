@@ -16,8 +16,7 @@ const App: React.FC = () => {
             <main>
                 <Switch>
                     <Route path="/" component={Index} exact />
-
-                    {!isLoggedIn && <Route path="/auth" component={Auth} />}
+                    <Route path="/auth" component={Auth} />
                     {isLoggedIn && (
                         <Route path="/profile" component={Profile} />
                     )}

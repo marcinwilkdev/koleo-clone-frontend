@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Route, Switch } from "react-router";
 import DiscountChoice from "../components/Auth/DiscountChoice/DiscountChoice";
 import MainAuth from "../components/Auth/MainAuth/MainAuth";
 import SetData from "../components/Auth/SetData/SetData";
 import SplitLayout from "../components/Layout/SplitLayout";
+import authContext from "../store/auth-context";
 
 const Auth: React.FC = () => {
+    const { isLoggedIn } = useContext(authContext);
+
     const [discount, setDiscount] = useState<boolean>(false);
 
     return (
@@ -19,7 +22,7 @@ const Auth: React.FC = () => {
                 <Route path="/auth/set-data" exact>
                     <SetData discount={discount} />
                 </Route>
-                <Route path="/auth" component={MainAuth} />
+                {!isLoggedIn && <Route path="/auth" component={MainAuth} />}
             </Switch>
         </SplitLayout>
     );
