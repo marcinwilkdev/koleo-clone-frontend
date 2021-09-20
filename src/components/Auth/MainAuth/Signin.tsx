@@ -1,50 +1,60 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import useHttp from "../../../hooks/use-http";
 import useInput from "../../../hooks/use-input";
 import authContext from "../../../store/auth-context";
-import Form from "../../UI/Form/Form";
-import { InputInterface } from "../../UI/Input/Input";
+import Button from "../../UI/Button/Button";
+import Input from "../../UI/Input/Input";
 
 import classes from "./styles/Signin.module.css";
 
 const Signin: React.FC = () => {
     const { login } = useContext(authContext);
+    const { sendRequest } = useHttp();
+    const history = useHistory();
 
     const emailHook = useInput((value) => value.includes("@"));
     const passwordHook = useInput((value) => value.length >= 8);
 
-    const inputs: InputInterface[] = [
-        {
-            name: "email",
-            hook: emailHook,
-            type: "email",
-            placeholder: "Adres e-mail",
-        },
-        {
-            name: "password",
-            hook: passwordHook,
-            type: "password",
-            placeholder: "Hasło",
-        },
-    ];
+    const isFormValid = emailHook.isValid && passwordHook.isValid;
 
-    const afterSubmitCallback = (data: any) => {
-        const formattedData = data as { message: string; token: string };
+    const submitHandler: React.FormEventHandler<HTMLFormElement> = async (event) => {
+        event.preventDefault();
+    
+        const data = await sendRequest("/auth/signin", "POST", {
+            email: emailHook.value,
+            password: passwordHook.value
+        });
 
-        if(!formattedData.token) return;
+        if(!data.token) return;
 
-        login(formattedData.token);
+        emailHook.reset();
+        passwordHook.reset();
+
+        login(data.token);
+
+        history.replace("/profile");
     };
 
     return (
         <div className={classes.signin}>
-            <Form
-                inputs={inputs}
-                submitLabel="Zaloguj się"
-                submitUrl="/auth/signin"
-                submitMethod="POST"
-                afterSubmitCallback={afterSubmitCallback}
-            />
+            <form onSubmit={submitHandler}>
+                <Input
+                    name="email"
+                    type="email"
+                    hook={emailHook}
+                    placeholder="Adres e-mail"
+                />
+                <Input
+                    name="password"
+                    type="password"
+                    hook={passwordHook}
+                    placeholder="Hasło"
+                />
+                <Button type="submit" disabled={!isFormValid}>
+                    Zaloguj się
+                </Button>
+            </form>
             <div className={classes.bottom}>
                 <Link to="/auth/signup">Zarejestruj się</Link>
                 <Link to="/auth/password/send">Zapomniałeś hasła?</Link>
