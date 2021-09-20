@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import Title from "../../UI/Title/Title";
 import SetDataForm from "./SetDataForm";
-import classes from "./styles/SetData.module.css";
 
 interface Props {
     discount: boolean;

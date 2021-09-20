@@ -40,7 +40,7 @@ const SetDataForm: React.FC<Props> = ({discount}) => {
     ) => {
         event.preventDefault();
 
-        const data = await sendRequest("/auth/set-data", "PUT", {
+        await sendRequest("/auth/set-data", "PUT", {
             discount: discount ? "true" : "false",
             name: nameHook.value,
             lastName: lastNameHook.value,
