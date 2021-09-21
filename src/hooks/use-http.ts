@@ -2,6 +2,10 @@ import { useCallback, useState } from "react";
 
 const DB_URL = "http://localhost:8080";
 
+interface ErrorResponseBody {
+    errorMessage: string;
+}
+
 interface UseHttpHook {
     isLoading: boolean;
     error: string;
@@ -39,7 +43,9 @@ const useHttp = (): UseHttpHook => {
                 const data = await response.json();
 
                 if (!response.ok) {
-                    throw new Error(data.message);
+                    const responseData = data as ErrorResponseBody;
+
+                    throw new Error(responseData.errorMessage);
                 }
 
                 setIsLoading(false);
