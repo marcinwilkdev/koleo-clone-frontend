@@ -6,6 +6,7 @@ export interface UseInputHook<T> {
     showError: boolean;
     changeHandler: React.ChangeEventHandler<T>;
     blurHandler: React.FocusEventHandler<T>;
+    replaceValue: (value: string) => void;
     reset: () => void;
 }
 
@@ -27,6 +28,10 @@ const useInput = <T extends HTMLSelectElement & HTMLInputElement>(
         setIsTouched(true);
     };
 
+    const replaceValue = (value: string) => {
+        setValue(value);
+    };
+
     const reset = () => {
         setIsTouched(false);
         setValue("");
@@ -38,6 +43,7 @@ const useInput = <T extends HTMLSelectElement & HTMLInputElement>(
         showError,
         changeHandler,
         blurHandler,
+        replaceValue,
         reset,
     };
 };
