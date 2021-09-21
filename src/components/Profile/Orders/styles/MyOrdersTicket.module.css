@@ -1,0 +1,40 @@
+.ticket {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 0 5%;
+
+    border-top: 1px solid #e9e9e9;
+}
+
+.ticket p {
+    text-align: center;
+
+    font-weight: 300;
+
+    font-size: 110%;
+}
+
+.ticket p:nth-child(1) {
+    width: 10%;
+}
+
+.ticket p:nth-child(2) {
+    width: 25%;
+}
+
+.ticket p:nth-child(3) {
+    width: 10%;
+}
+
+.ticket p:nth-child(4) {
+    width: 15%;
+}
+
+.ticket p:nth-child(5) {
+    width: 10%;
+}
+
+.ticket p:nth-child(6) {
+    width: 30%;
+}
