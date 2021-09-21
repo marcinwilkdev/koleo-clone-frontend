@@ -1,0 +1,45 @@
+.input {
+    position: relative;
+
+    flex-grow: 24;
+    margin-right: 3.5rem;
+}
+
+.input input {
+    width: 100%;
+
+    text-transform: uppercase;
+}
+
+.options {
+    position: absolute;
+
+    top: calc(100% + 0.5rem);
+
+    width: 100%;
+
+    background-color: white;
+
+    border: 1px solid lightgray;
+}
+
+.option {
+    padding: 0.5rem 1rem;
+
+    font-size: 85%;
+    font-weight: 500;
+
+    border-top: 1px solid lightgray;
+
+    cursor: pointer;
+}
+
+.option:first-child {
+    border-top: none;
+}
+
+.option:hover {
+    background-color: #1e1064;
+
+    color: white;
+}
