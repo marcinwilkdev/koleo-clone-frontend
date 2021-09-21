@@ -10,9 +10,10 @@ export interface UseInputHook<T> {
 }
 
 const useInput = <T extends HTMLSelectElement & HTMLInputElement>(
-    validator: (value: string) => boolean
+    validator: (value: string) => boolean,
+    initialValue?: string
 ): UseInputHook<T> => {
-    const [value, setValue] = useState<string>("");
+    const [value, setValue] = useState<string>(initialValue || "");
     const [isTouched, setIsTouched] = useState<boolean>(false);
 
     const isValid = validator(value);

@@ -1,0 +1,18 @@
+.datePicker {
+    background-color: white;
+    color: #1E1064;
+
+    border: 1px solid lightgray;
+    border-radius: 0;
+
+    font-size: 90%;
+
+    padding: 1rem 2rem;
+}
+
+.datePicker:focus-visible {
+    color: white;
+    background-color: #1E1064;
+
+    outline: none;
+}
