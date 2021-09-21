@@ -11,7 +11,7 @@ import classes from "./styles/Signup.module.css";
 const Signup: React.FC = () => {
     const history = useHistory();
     const { sendRequest } = useHttp();
-    const authCtx = useContext(authContext);
+    const { login } = useContext(authContext);
 
     const emailHook = useInput((value) => value.includes("@"));
     const passwordHook = useInput((value) => value.length >= 8);
@@ -33,9 +33,9 @@ const Signup: React.FC = () => {
             confirmPassword: confirmPasswordHook.value,
         });
 
-        if(!data || !data.token) return;
+        if (!data || !data.token) return;
 
-        authCtx.login(data.token);
+        login(data.token, data.userData);
 
         history.push("/auth/discount-choice");
     };

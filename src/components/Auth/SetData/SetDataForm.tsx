@@ -14,6 +14,7 @@ interface Props {
 }
 
 const SetDataForm: React.FC<Props> = ({ discount }) => {
+    const { token, changeUserData } = useContext(authContext);
     const history = useHistory();
     const { sendRequest } = useHttp();
 
@@ -41,9 +42,7 @@ const SetDataForm: React.FC<Props> = ({ discount }) => {
     ) => {
         event.preventDefault();
 
-        const token = localStorage.getItem("token");
-
-        await sendRequest(
+        const data = await sendRequest(
             "/auth/set-data",
             "PUT",
             {
@@ -58,6 +57,10 @@ const SetDataForm: React.FC<Props> = ({ discount }) => {
             },
             token
         );
+
+        if (!data.userData) return;
+
+        changeUserData(data.userData);
 
         history.replace("/");
     };

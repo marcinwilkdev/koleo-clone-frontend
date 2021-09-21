@@ -31,7 +31,7 @@ const Signin: React.FC = () => {
         emailHook.reset();
         passwordHook.reset();
 
-        login(data.token);
+        login(data.token, data.userData);
 
         history.replace("/profile");
     };

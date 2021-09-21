@@ -4,7 +4,7 @@ import authContext from "../../store/auth-context";
 import classes from "./styles/Header.module.css";
 
 const Header: React.FC = () => {
-    const { isLoggedIn } = useContext(authContext);
+    const { isLoggedIn, userData } = useContext(authContext);
 
     return (
         <header className={classes.header}>
@@ -21,7 +21,7 @@ const Header: React.FC = () => {
                     </NavLink>
                 </div>
             )}
-            {isLoggedIn && <NavLink to="/profile">Name</NavLink>}
+            {isLoggedIn && <NavLink to="/profile">{userData}</NavLink>}
         </header>
     );
 };
