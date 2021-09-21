@@ -9,6 +9,18 @@ import Title from "../../UI/Title/Title";
 
 import classes from "./styles/SetDataForm.module.css";
 
+interface SetDataRequestBody {
+    discount: string;
+    firstName: string;
+    lastName: string;
+    dateOfBirth: string;
+}
+
+interface SetDataResponseBody {
+    message: string;
+    userData: string;
+}
+
 interface Props {
     discount: boolean;
 }
@@ -16,7 +28,7 @@ interface Props {
 const SetDataForm: React.FC<Props> = ({ discount }) => {
     const { token, changeUserData } = useContext(authContext);
     const history = useHistory();
-    const { sendRequest } = useHttp();
+    const { sendRequest, error } = useHttp();
 
     const nameHook = useInput((value) => value.trim() !== "");
     const lastNameHook = useInput((value) => value.trim() !== "");
@@ -42,23 +54,25 @@ const SetDataForm: React.FC<Props> = ({ discount }) => {
     ) => {
         event.preventDefault();
 
+        const requestBody: SetDataRequestBody = {
+            discount: discount ? "true" : "false",
+            firstName: nameHook.value,
+            lastName: lastNameHook.value,
+            dateOfBirth: new Date(
+                +monthHook.value,
+                +yearHook.value,
+                +dayHook.value
+            ).toISOString(),
+        };
+
         const data = await sendRequest(
             "/auth/set-data",
             "PUT",
-            {
-                discount: discount ? "true" : "false",
-                firstName: nameHook.value,
-                lastName: lastNameHook.value,
-                dateOfBirth: new Date(
-                    +monthHook.value,
-                    +yearHook.value,
-                    +dayHook.value
-                ).toISOString(),
-            },
+            requestBody,
             token
-        );
+        ) as SetDataResponseBody;
 
-        if (!data.userData) return;
+        if(error) return;
 
         changeUserData(data.userData);
 

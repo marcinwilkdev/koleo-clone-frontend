@@ -1,3 +1,2 @@
 create date input
 create interfaces for strict data types in requests
-discard form component

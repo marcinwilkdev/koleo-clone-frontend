@@ -8,9 +8,20 @@ import Input from "../../UI/Input/Input";
 
 import classes from "./styles/Signin.module.css";
 
+interface SigninRequestBody {
+    email: string;
+    password: string;
+}
+
+interface SigninResponseBody {
+    message: string;
+    token: string;
+    userData: string;
+}
+
 const Signin: React.FC = () => {
     const { login } = useContext(authContext);
-    const { sendRequest } = useHttp();
+    const { sendRequest, error } = useHttp();
     const history = useHistory();
 
     const emailHook = useInput((value) => value.includes("@"));
@@ -18,15 +29,23 @@ const Signin: React.FC = () => {
 
     const isFormValid = emailHook.isValid && passwordHook.isValid;
 
-    const submitHandler: React.FormEventHandler<HTMLFormElement> = async (event) => {
+    const submitHandler: React.FormEventHandler<HTMLFormElement> = async (
+        event
+    ) => {
         event.preventDefault();
-    
-        const data = await sendRequest("/auth/signin", "POST", {
-            email: emailHook.value,
-            password: passwordHook.value
-        });
 
-        if(!data || !data.token || !data.userData) return;
+        const requestBody: SigninRequestBody = {
+            email: emailHook.value,
+            password: passwordHook.value,
+        };
+
+        const data = (await sendRequest(
+            "/auth/signin",
+            "POST",
+            requestBody
+        )) as SigninResponseBody;
+
+        if (error) return;
 
         emailHook.reset();
         passwordHook.reset();

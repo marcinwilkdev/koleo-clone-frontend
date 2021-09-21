@@ -8,9 +8,21 @@ import Input from "../../UI/Input/Input";
 
 import classes from "./styles/Signup.module.css";
 
+interface SignupRequestBody {
+    email: string;
+    password: string;
+    confirmPassword: string;
+}
+
+interface SignupResponseBody {
+    message: string;
+    token: string;
+    userData: string;
+}
+
 const Signup: React.FC = () => {
     const history = useHistory();
-    const { sendRequest } = useHttp();
+    const { sendRequest, error } = useHttp();
     const { login } = useContext(authContext);
 
     const emailHook = useInput((value) => value.includes("@"));
@@ -27,13 +39,19 @@ const Signup: React.FC = () => {
     ) => {
         event.preventDefault();
 
-        const data = await sendRequest("/auth/signup", "PUT", {
+        const requestBody: SignupRequestBody = {
             email: emailHook.value,
             password: passwordHook.value,
             confirmPassword: confirmPasswordHook.value,
-        });
+        };
 
-        if (!data || !data.token || !data.userData) return;
+        const data = (await sendRequest(
+            "/auth/signup",
+            "PUT",
+            requestBody
+        )) as SignupResponseBody;
+
+        if (error) return;
 
         login(data.token, data.userData);
 
