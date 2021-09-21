@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useHttp from "../../../hooks/use-http";
+import authContext from "../../../store/auth-context";
 import classes from "./styles/MyOrdersPagination.module.css";
 
 interface Props {
     pageNumber: number;
-    pages: number;
+}
+
+interface GetTicketsCountResponseBody {
+    message: string;
+    ticketsCount: number;
 }
 
 const MAX_LINKS = 11;
+const TICKETS_PER_PAGE = 10;
 
 const generateStringPageLinks = (pageNumber: number, pages: number) => {
     let pageLinks: number[] = [pageNumber];
@@ -47,7 +54,35 @@ const generateStringPageLinks = (pageNumber: number, pages: number) => {
     return stringPageLinks;
 };
 
-const MyOrdersPagination: React.FC<Props> = ({ pageNumber, pages }) => {
+const MyOrdersPagination: React.FC<Props> = ({ pageNumber }) => {
+    const { sendRequest } = useHttp();
+    const { token, isLoggedIn } = useContext(authContext);
+
+    const [ticketCount, setTicketCount] = useState<number>(0);
+
+    useEffect(() => {
+        const fetchTicketCount = async () => {
+            const data = (await sendRequest(
+                "/tickets/count",
+                "GET",
+                {},
+                token
+            )) as GetTicketsCountResponseBody;
+
+            console.log(data);
+
+            if (!data || !data.ticketsCount) return;
+
+            setTicketCount(data.ticketsCount);
+        };
+
+        if (isLoggedIn !== null) {
+            fetchTicketCount();
+        }
+    }, [token, isLoggedIn, sendRequest]);
+
+    const pages = Math.ceil(ticketCount / TICKETS_PER_PAGE);
+
     const stringPageLinks = generateStringPageLinks(pageNumber, pages);
 
     return (

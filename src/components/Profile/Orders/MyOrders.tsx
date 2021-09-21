@@ -13,7 +13,7 @@ const MyOrders: React.FC = () => {
 
     let pageNumber = 1;
 
-    if(pageParam) {
+    if (pageParam) {
         pageNumber = +pageParam;
     }
 
@@ -22,8 +22,8 @@ const MyOrders: React.FC = () => {
             <h1>
                 <Title title="Moje bilety" />
             </h1>
-            <MyOrdersTable pageNumber={pageNumber}/>
-            <MyOrdersPagination pageNumber={pageNumber} pages={15} />
+            <MyOrdersTable pageNumber={pageNumber} />
+            <MyOrdersPagination pageNumber={pageNumber} />
         </div>
     );
 };
