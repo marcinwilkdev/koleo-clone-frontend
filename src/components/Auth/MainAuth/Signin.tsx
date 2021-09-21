@@ -52,7 +52,7 @@ const Signin: React.FC = () => {
 
         login(data.token, data.userData);
 
-        history.replace("/profile");
+        history.replace("/profile/my-orders");
     };
 
     return (

@@ -1,4 +1,33 @@
 .profileNav {
     display: flex;
     justify-content: space-between;
+
+    padding: 0.25rem 5rem;
+
+    border: 1px solid lightgray;
+}
+
+.profileNav button {
+    background-color: transparent;
+
+    border: none;
+
+    font-weight: 500;
+
+    cursor: pointer;
+}
+
+.profileNav a ,
+.profileNav button {
+    font-size: 80%;
+
+    color: rgb(67, 67, 220);
+}
+
+.profileNav a:hover,
+.profileNav a:active,
+.profileNav button:hover,
+.profileNav button:active,
+.profileNav a.active {
+    color: rgb(51, 194, 161);
 }
