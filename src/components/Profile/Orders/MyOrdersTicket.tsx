@@ -1,30 +1,24 @@
 import React from "react";
+import { Ticket } from "../../../models/ticket";
 import Title from "../../UI/Title/Title";
 import classes from "./styles/MyOrdersTicket.module.css";
 
-interface Props {
-    date: Date;
-    departureStation: string;
-    arrivalStation: string;
-    ticketType: string;
-    trainType: string;
-    price: number;
-}
-
-const MyOrdersTicket: React.FC<Props> = ({
+const MyOrdersTicket: React.FC<Ticket> = ({
     date,
-    departureStation,
-    arrivalStation,
+    departureCity,
+    arrivalCity,
     ticketType,
     trainType,
     price,
 }) => {
+    const formattedDate = new Date(date).toLocaleDateString();
+
     return (
         <div className={classes.ticket}>
-            <p>{date.toLocaleDateString()}</p>
+            <p>{formattedDate}</p>
             <p>
-                <Title title={departureStation} /> -{" "}
-                <Title title={arrivalStation} />
+                <Title title={departureCity} /> -{" "}
+                <Title title={arrivalCity} />
             </p>
             <p>{ticketType}</p>
             <p>{trainType}</p>

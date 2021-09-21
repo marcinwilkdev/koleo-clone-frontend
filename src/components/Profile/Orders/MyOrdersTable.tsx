@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import useHttp from "../../../hooks/use-http";
+import { Ticket } from "../../../models/ticket";
+import authContext from "../../../store/auth-context";
 import MyOrdersTicket from "./MyOrdersTicket";
 import classes from "./styles/MyOrdersTable.module.css";
 
@@ -6,7 +9,38 @@ interface Props {
     pageNumber: number;
 }
 
+interface GetTicketsResponseBody {
+    message: string;
+    tickets: Ticket[];
+}
+
 const MyOrdersTable: React.FC<Props> = ({ pageNumber }) => {
+    const { sendRequest } = useHttp();
+    const { token, isLoggedIn } = useContext(authContext);
+
+    const [tickets, setTickets] = useState<Ticket[]>([]);
+
+    useEffect(() => {
+        const fetchTickets = async () => {
+            const data = (await sendRequest(
+                "/tickets/list?page=" + pageNumber,
+                "GET",
+                {},
+                token
+            )) as GetTicketsResponseBody;
+
+            console.log(data);
+
+            if (!data || !data.tickets) return;
+
+            setTickets(data.tickets);
+        };
+
+        if (isLoggedIn !== null) {
+            fetchTickets();
+        }
+    }, [pageNumber, token, isLoggedIn, sendRequest]);
+
     return (
         <div className={classes.table}>
             <div className={classes.tableHeader}>
@@ -17,22 +51,9 @@ const MyOrdersTable: React.FC<Props> = ({ pageNumber }) => {
                 <h3>CENA</h3>
                 <h3>AKCJE</h3>
             </div>
-            <MyOrdersTicket
-                date={new Date()}
-                arrivalStation="Długołęka"
-                departureStation="Wrocław Główny"
-                price={2.84}
-                ticketType="jednorazowy"
-                trainType="KD"
-            />
-            <MyOrdersTicket
-                date={new Date()}
-                arrivalStation="Długołęka"
-                departureStation="Wrocław Główny"
-                price={2.84}
-                ticketType="jednorazowy"
-                trainType="KD"
-            />
+            {tickets.map((ticket) => (
+                <MyOrdersTicket key={ticket.id} {...ticket} />
+            ))}
         </div>
     );
 };

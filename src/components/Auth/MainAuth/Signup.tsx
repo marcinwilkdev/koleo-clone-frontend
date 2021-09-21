@@ -22,7 +22,7 @@ interface SignupResponseBody {
 
 const Signup: React.FC = () => {
     const history = useHistory();
-    const { sendRequest, error } = useHttp();
+    const { sendRequest } = useHttp();
     const { login } = useContext(authContext);
 
     const emailHook = useInput((value) => value.includes("@"));

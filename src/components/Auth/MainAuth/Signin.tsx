@@ -21,7 +21,7 @@ interface SigninResponseBody {
 
 const Signin: React.FC = () => {
     const { login } = useContext(authContext);
-    const { sendRequest, error } = useHttp();
+    const { sendRequest } = useHttp();
     const history = useHistory();
 
     const emailHook = useInput((value) => value.includes("@"));

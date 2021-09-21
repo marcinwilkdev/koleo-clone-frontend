@@ -9,7 +9,12 @@ interface ErrorResponseBody {
 interface UseHttpHook {
     isLoading: boolean;
     error: string;
-    sendRequest: (url: string, method?: string, body?: any, token?: string | null) => Promise<any>;
+    sendRequest: (
+        url: string,
+        method?: string,
+        body?: any,
+        token?: string | null
+    ) => Promise<any>;
 }
 
 const useHttp = (): UseHttpHook => {
@@ -17,7 +22,12 @@ const useHttp = (): UseHttpHook => {
     const [error, setError] = useState<string>("");
 
     const sendRequest = useCallback(
-        async (url: string, method?: string, body?: any, token?: string | null) => {
+        async (
+            url: string,
+            method?: string,
+            body?: any,
+            token?: string | null
+        ) => {
             setIsLoading(true);
             setError("");
 
@@ -27,15 +37,18 @@ const useHttp = (): UseHttpHook => {
                 headers["Content-Type"] = "application/json";
             }
 
-            if(token) {
+            if (token) {
                 headers["Authorization"] = "Bearer " + token;
             }
 
             const requestInit: RequestInit = {
                 method,
                 headers,
-                body: JSON.stringify(body),
             };
+
+            if (method !== "GET") {
+                requestInit.body = JSON.stringify(body);
+            }
 
             try {
                 const response = await fetch(DB_URL + url, requestInit);

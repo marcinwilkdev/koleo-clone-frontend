@@ -28,7 +28,7 @@ interface Props {
 const SetDataForm: React.FC<Props> = ({ discount }) => {
     const { token, changeUserData } = useContext(authContext);
     const history = useHistory();
-    const { sendRequest, error } = useHttp();
+    const { sendRequest } = useHttp();
 
     const nameHook = useInput((value) => value.trim() !== "");
     const lastNameHook = useInput((value) => value.trim() !== "");

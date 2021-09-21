@@ -7,13 +7,13 @@ interface Props {
     pages: number;
 }
 
-const MAX_PAGES = 11;
+const MAX_LINKS = 11;
 
 const generateStringPageLinks = (pageNumber: number, pages: number) => {
     let pageLinks: number[] = [pageNumber];
     let generatedPages = 1;
 
-    while (generatedPages < pages && generatedPages < MAX_PAGES) {
+    while (generatedPages < pages && generatedPages < MAX_LINKS) {
         const lastGeneratedPage = pageLinks[pageLinks.length - 1];
         const firstGeneratedPage = pageLinks[0];
 
@@ -24,7 +24,7 @@ const generateStringPageLinks = (pageNumber: number, pages: number) => {
 
         if (
             generatedPages < pages &&
-            generatedPages < MAX_PAGES &&
+            generatedPages < MAX_LINKS &&
             firstGeneratedPage > 1
         ) {
             pageLinks = [firstGeneratedPage - 1, ...pageLinks];
@@ -37,9 +37,9 @@ const generateStringPageLinks = (pageNumber: number, pages: number) => {
         pageLinks[1] = -1;
     }
 
-    if (pageLinks[MAX_PAGES - 1] < pages) {
-        pageLinks[MAX_PAGES - 1] = pages;
-        pageLinks[MAX_PAGES - 2] = -1;
+    if (pageLinks[MAX_LINKS - 1] < pages) {
+        pageLinks[MAX_LINKS - 1] = pages;
+        pageLinks[MAX_LINKS - 2] = -1;
     }
 
     const stringPageLinks: string[] = pageLinks.map((link) => "" + link);
