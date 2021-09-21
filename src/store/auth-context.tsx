@@ -3,7 +3,7 @@ import { createContext, useEffect, useState } from "react";
 interface AuthContextInterface {
     userData: string;
     token: string;
-    isLoggedIn: boolean;
+    isLoggedIn: boolean | null;
     changeUserData: (userData: string) => void;
     login: (token: string, userData: string) => void;
     logout: () => void;
@@ -21,7 +21,7 @@ const authContext = createContext<AuthContextInterface>({
 export const AuthContextProvider: React.FC = ({ children }) => {
     // ADD TIMEOUT FOR TOKEN
 
-    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
     const [userData, setUserData] = useState<string>("");
     const [token, setToken] = useState<string>("");
 
@@ -33,6 +33,8 @@ export const AuthContextProvider: React.FC = ({ children }) => {
             setIsLoggedIn(true);
             setToken(token);
             setUserData(userData || "User");
+        } else {
+            setIsLoggedIn(false);
         }
     }, []);
 

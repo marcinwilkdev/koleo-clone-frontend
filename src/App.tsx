@@ -10,6 +10,16 @@ import authContext from "./store/auth-context";
 const App: React.FC = () => {
     const { isLoggedIn } = useContext(authContext);
 
+    let loginStatus = isLoggedIn;
+
+    if(loginStatus === null) {
+        const token = localStorage.getItem("token");
+
+        if(token) {
+            loginStatus = true;
+        }
+    }
+
     return (
         <Fragment>
             <Header />
@@ -17,15 +27,15 @@ const App: React.FC = () => {
                 <Switch>
                     <Route path="/" component={Index} exact />
                     <Route path="/auth" component={Auth} />
-                    {isLoggedIn && (
+                    {loginStatus && (
                         <Route path="/profile" component={Profile} />
                     )}
 
                     <Route path="/not-found" component={NotFound} />
                     
                     <Route path="/">
-                        {isLoggedIn && <Redirect to="/not-found" />}
-                        {!isLoggedIn && <Redirect to="/auth/signup" />}
+                        {loginStatus && <Redirect to="/not-found" />}
+                        {!loginStatus && <Redirect to="/auth/signup" />}
                     </Route>
                 </Switch>
             </main>
