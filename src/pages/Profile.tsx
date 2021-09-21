@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Redirect, Route, Switch } from "react-router";
-import ProfileNav from "../components/Profile/ProfileNav";
+import ProfileNav from "../components/Profile/ProfileNav/ProfileNav";
 
 const Profile: React.FC = () => {
     return (
