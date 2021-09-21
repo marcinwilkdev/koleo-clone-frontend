@@ -72,7 +72,7 @@ const SetDataForm: React.FC<Props> = ({ discount }) => {
             token
         ) as SetDataResponseBody;
 
-        if(error) return;
+        if(!data || !data.userData) return;
 
         changeUserData(data.userData);
 

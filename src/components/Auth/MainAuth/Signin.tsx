@@ -45,7 +45,7 @@ const Signin: React.FC = () => {
             requestBody
         )) as SigninResponseBody;
 
-        if (error) return;
+        if (!data || !data.token || !data.userData) return;
 
         emailHook.reset();
         passwordHook.reset();

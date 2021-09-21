@@ -51,7 +51,7 @@ const Signup: React.FC = () => {
             requestBody
         )) as SignupResponseBody;
 
-        if (error) return;
+        if (!data || !data.token || !data.userData) return;
 
         login(data.token, data.userData);
 
