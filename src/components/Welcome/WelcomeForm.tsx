@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router";
 import useHttp from "../../hooks/use-http";
 import useInput from "../../hooks/use-input";
 import Button from "../UI/Button/Button";
@@ -17,6 +18,7 @@ interface GetCitiesResponseBody {
 }
 
 const WelcomeForm: React.FC = () => {
+    const history = useHistory();
     const { sendRequest } = useHttp();
 
     const [cities, setCities] = useState<City[]>([]);
@@ -44,7 +46,9 @@ const WelcomeForm: React.FC = () => {
 
         if (!fromHook.isReplaced || !toHook.isReplaced) return;
 
-        console.log("DZIAAA");
+        history.push(
+            `/timetable?from=${fromHook.value}&to=${toHook.value}&date=${dateHook.value}`
+        );
     };
 
     return (

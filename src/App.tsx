@@ -5,6 +5,7 @@ import Auth from "./pages/Auth";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Profile from "./pages/Profile";
+import Timetable from "./pages/Timetable";
 import authContext from "./store/auth-context";
 
 const App: React.FC = () => {
@@ -26,6 +27,7 @@ const App: React.FC = () => {
             <main>
                 <Switch>
                     <Route path="/" component={Index} exact />
+                    <Route path="/timetable" component={Timetable} exact/>
                     <Route path="/auth" component={Auth} />
                     {loginStatus && (
                         <Route path="/profile" component={Profile} />
