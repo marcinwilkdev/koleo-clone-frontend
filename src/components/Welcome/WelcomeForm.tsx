@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import useHttp from "../../hooks/use-http";
 import useInput from "../../hooks/use-input";
 import Button from "../UI/Button/Button";
-import Input from "../UI/Input/Input";
 import Title from "../UI/Title/Title";
 import DatePicker, { formattedToday } from "./DatePicker";
 import classes from "./styles/WelcomeForm.module.css";
@@ -38,10 +37,18 @@ const WelcomeForm: React.FC = () => {
         };
 
         fetchCities();
-    }, []);
+    }, [sendRequest]);
+
+    const submitHandler: React.FormEventHandler<HTMLFormElement> = (event) => {
+        event.preventDefault();
+
+        if (!fromHook.isReplaced || !toHook.isReplaced) return;
+
+        console.log("DZIAAA");
+    };
 
     return (
-        <form className={classes.welcomeForm}>
+        <form className={classes.welcomeForm} onSubmit={submitHandler}>
             <WelcomeFormInput
                 name="from"
                 placeholder="Z"

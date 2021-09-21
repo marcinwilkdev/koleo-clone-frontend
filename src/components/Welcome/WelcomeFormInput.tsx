@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import useInput, { UseInputHook } from "../../hooks/use-input";
+import { UseInputHook } from "../../hooks/use-input";
 import Input from "../UI/Input/Input";
 import classes from "./styles/WelcomeFormInput.module.css";
 import { City } from "./WelcomeForm";
@@ -75,6 +75,7 @@ const WelcomeFormInput: React.FC<Props> = ({
             <div className={compiledOptionsClassName}>
                 {filteredCities.map((city) => (
                     <CityOption
+                        key={city.id}
                         replaceValue={hook.replaceValue}
                         hideOptions={hideOptions}
                         name={city.name}
