@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router";
 import useHttp from "../../../hooks/use-http";
 import useInput from "../../../hooks/use-input";
+import authContext from "../../../store/auth-context";
 import Button from "../../UI/Button/Button";
 import Input from "../../UI/Input/Input";
 import Title from "../../UI/Title/Title";
@@ -12,7 +13,7 @@ interface Props {
     discount: boolean;
 }
 
-const SetDataForm: React.FC<Props> = ({discount}) => {
+const SetDataForm: React.FC<Props> = ({ discount }) => {
     const history = useHistory();
     const { sendRequest } = useHttp();
 
@@ -40,14 +41,23 @@ const SetDataForm: React.FC<Props> = ({discount}) => {
     ) => {
         event.preventDefault();
 
-        await sendRequest("/auth/set-data", "PUT", {
-            discount: discount ? "true" : "false",
-            name: nameHook.value,
-            lastName: lastNameHook.value,
-            day: dayHook.value,
-            month: monthHook.value,
-            year: yearHook.value,
-        });
+        const token = localStorage.getItem("token");
+
+        await sendRequest(
+            "/auth/set-data",
+            "PUT",
+            {
+                discount: discount ? "true" : "false",
+                firstName: nameHook.value,
+                lastName: lastNameHook.value,
+                dateOfBirth: new Date(
+                    +monthHook.value,
+                    +yearHook.value,
+                    +dayHook.value
+                ).toISOString(),
+            },
+            token
+        );
 
         history.replace("/");
     };
