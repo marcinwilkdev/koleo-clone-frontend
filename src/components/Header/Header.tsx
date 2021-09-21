@@ -21,7 +21,7 @@ const Header: React.FC = () => {
                     </NavLink>
                 </div>
             )}
-            {isLoggedIn && <NavLink to="/profile">{userData}</NavLink>}
+            {isLoggedIn && <NavLink to="/profile/my-orders">{userData}</NavLink>}
         </header>
     );
 };
