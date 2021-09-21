@@ -33,7 +33,7 @@ const Signup: React.FC = () => {
             confirmPassword: confirmPasswordHook.value,
         });
 
-        if (!data || !data.token) return;
+        if (!data || !data.token || !data.userData) return;
 
         login(data.token, data.userData);
 

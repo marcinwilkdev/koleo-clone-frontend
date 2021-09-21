@@ -38,7 +38,9 @@ export const AuthContextProvider: React.FC = ({ children }) => {
 
     const changeUserData = (userData: string) => {
         setUserData(userData);
-    }
+        
+        localStorage.setItem("userData", userData);
+    };
 
     const login = (token: string, userData: string) => {
         setIsLoggedIn(true);

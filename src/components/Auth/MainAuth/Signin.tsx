@@ -26,7 +26,7 @@ const Signin: React.FC = () => {
             password: passwordHook.value
         });
 
-        if(!data.token) return;
+        if(!data || !data.token || !data.userData) return;
 
         emailHook.reset();
         passwordHook.reset();
