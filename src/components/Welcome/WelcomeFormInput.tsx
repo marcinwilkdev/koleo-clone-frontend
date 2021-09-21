@@ -1,5 +1,5 @@
 import React from "react";
-import { UseInputHook } from "../../hooks/use-input";
+import useInput, { UseInputHook } from "../../hooks/use-input";
 import Input from "../UI/Input/Input";
 import classes from "./styles/WelcomeFormInput.module.css";
 
@@ -10,10 +10,16 @@ interface Props {
 }
 
 const WelcomeFormInput: React.FC<Props> = ({ hook, name, placeholder }) => {
+    let compiledOptionsClassName = classes.options;
+
+    if (hook.value.length >= 2) {
+        compiledOptionsClassName += " " + classes.show;
+    }
+
     return (
         <div className={classes.input}>
             <Input name={name} placeholder={placeholder} hook={hook} />
-            <div className={classes.options}>
+            <div className={compiledOptionsClassName}>
                 <div className={classes.option}>WROCŁAW GŁOWNY</div>
                 <div className={classes.option}>WROCŁAW ZACHODNI</div>
                 <div className={classes.option}>WROCŁAW MIKOŁAJOW</div>

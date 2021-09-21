@@ -8,6 +8,9 @@
     font-size: 90%;
 
     padding: 1rem 2rem;
+
+    flex-grow: 24;
+    margin-right: 3.5rem;
 }
 
 .datePicker:focus-visible {
