@@ -5,7 +5,7 @@ const DB_URL = "http://localhost:8080";
 interface UseHttpHook {
     isLoading: boolean;
     error: string;
-    sendRequest: (url: string, method?: string, body?: any) => Promise<any>;
+    sendRequest: (url: string, method?: string, body?: any, token?: string | null) => Promise<any>;
 }
 
 const useHttp = (): UseHttpHook => {
@@ -13,7 +13,7 @@ const useHttp = (): UseHttpHook => {
     const [error, setError] = useState<string>("");
 
     const sendRequest = useCallback(
-        async (url: string, method?: string, body?: any) => {
+        async (url: string, method?: string, body?: any, token?: string | null) => {
             setIsLoading(true);
             setError("");
 
@@ -21,6 +21,10 @@ const useHttp = (): UseHttpHook => {
 
             if (method !== "GET") {
                 headers["Content-Type"] = "application/json";
+            }
+
+            if(token) {
+                headers["Authorization"] = "Bearer " + token;
             }
 
             const requestInit: RequestInit = {
