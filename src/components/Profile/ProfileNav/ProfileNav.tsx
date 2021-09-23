@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { NavLink, useHistory } from "react-router-dom";
+
 import authContext from "../../../store/auth-context";
+
 import classes from "./styles/ProfileNav.module.css";
 
 const ProfileNav: React.FC = () => {
