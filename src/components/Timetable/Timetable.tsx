@@ -22,7 +22,6 @@ const Timetable: React.FC = () => {
 
     const fromParam = queryParams.get("from");
     const toParam = queryParams.get("to");
-    // const dateParam = queryParams.get("date");
 
     useEffect(() => {
         const fetchConnections = async () => {
