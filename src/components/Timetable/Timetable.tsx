@@ -13,8 +13,6 @@ interface FindConnectionsResponseBody {
 const Timetable: React.FC = () => {
     const [connections, setConnections] = useState<ISavedConnection[]>([]);
 
-    console.log(connections);
-
     const { sendRequest } = useHttp();
     const location = useLocation();
 
@@ -57,7 +55,7 @@ const Timetable: React.FC = () => {
                 <p>CENA DLA CIEBIE</p>
             </div>
             {connections.map((connection) => (
-                <Connection {...connection} />
+                <Connection key={connection.id} {...connection} />
             ))}
         </div>
     );

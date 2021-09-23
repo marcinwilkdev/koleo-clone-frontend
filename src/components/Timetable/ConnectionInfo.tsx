@@ -7,6 +7,8 @@ interface Props {
     trainType: string;
     travelTimeString: string;
     price: number;
+    opened: boolean;
+    onClick: React.MouseEventHandler<HTMLDivElement>;
 }
 
 const ConnectionInfo: React.FC<Props> = ({
@@ -15,9 +17,17 @@ const ConnectionInfo: React.FC<Props> = ({
     trainType,
     travelTimeString,
     price,
+    opened,
+    onClick
 }) => {
+    let compiledClassName = classes.info;
+
+    if(opened) {
+        compiledClassName += " " + classes.active;
+    }
+
     return (
-        <div className={classes.info}>
+        <div className={compiledClassName} onClick={onClick}>
             <div>{departureTime}</div>
             <div>{arrivalTime}</div>
             <div className={classes.trainType}>

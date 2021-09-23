@@ -5,7 +5,7 @@
 }
 
 .info:hover,
-.info.active {
+.active {
     background-color: #f0f0f0;
 }
 

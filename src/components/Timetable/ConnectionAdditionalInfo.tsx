@@ -1,9 +1,7 @@
 import React from "react";
 import classes from "./styles/ConnectionAdditionalInfo.module.css";
 
-interface Props {}
-
-const ConnectionAdditionalInfo: React.FC<Props> = ({}) => {
+const ConnectionAdditionalInfo: React.FC = () => {
     return (
         <div className={classes.additionalInfo}>
             <div>Połączenie bezpośrednie</div>
