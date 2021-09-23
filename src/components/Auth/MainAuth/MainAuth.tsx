@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { Link, Switch, Route, Redirect } from "react-router-dom";
+
 import Title from "../../UI/Title/Title";
 import MainAuthNav from "./MainAuthNav";
 import Signin from "./Signin";

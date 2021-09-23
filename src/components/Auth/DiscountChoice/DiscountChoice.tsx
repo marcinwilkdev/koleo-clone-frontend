@@ -1,7 +1,9 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
+
 import Button from "../../UI/Button/Button";
 import Title from "../../UI/Title/Title";
+
 import classes from "./styles/DiscountChoice.module.css";
 
 interface Props {
@@ -38,7 +40,7 @@ const DiscountChoice: React.FC<Props> = ({ applyDiscount }) => {
                         Skorzystaj z kreatora i sprawdź jaka zniżka Ci
                         przysługuje!
                     </p>
-                    <Button>Znajdź swoją znizke</Button>
+                    <Button>Znajdź swoją znizke (not implemented)</Button>
                 </div>
             </div>
         </Fragment>

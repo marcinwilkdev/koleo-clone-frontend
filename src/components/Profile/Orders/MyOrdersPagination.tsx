@@ -1,7 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
 import useHttp from "../../../hooks/use-http";
 import authContext from "../../../store/auth-context";
+
 import classes from "./styles/MyOrdersPagination.module.css";
 
 interface Props {
@@ -86,29 +88,33 @@ const MyOrdersPagination: React.FC<Props> = ({ pageNumber }) => {
     const stringPageLinks = generateStringPageLinks(pageNumber, pages);
 
     return (
-        <div className={classes.pagination}>
-            {stringPageLinks.map((link, index) => {
-                if (link === "-1") {
-                    return <p key={index}>...</p>;
-                }
+        <Fragment>
+            {pages > 1 && (
+                <div className={classes.pagination}>
+                    {stringPageLinks.map((link, index) => {
+                        if (link === "-1") {
+                            return <p key={index}>...</p>;
+                        }
 
-                let className: string | undefined;
+                        let className: string | undefined;
 
-                if (+link === pageNumber) {
-                    className = classes.active;
-                }
+                        if (+link === pageNumber) {
+                            className = classes.active;
+                        }
 
-                return (
-                    <Link
-                        key={index}
-                        className={className}
-                        to={"/profile/my-orders?page=" + link}
-                    >
-                        {link}
-                    </Link>
-                );
-            })}
-        </div>
+                        return (
+                            <Link
+                                key={index}
+                                className={className}
+                                to={"/profile/my-orders?page=" + link}
+                            >
+                                {link}
+                            </Link>
+                        );
+                    })}
+                </div>
+            )}
+        </Fragment>
     );
 };
 

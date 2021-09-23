@@ -1,7 +1,9 @@
 import React from "react";
+
 import Title from "../UI/Title/Title";
-import classes from "./styles/Welcome.module.css";
 import WelcomeForm from "./WelcomeForm";
+
+import classes from "./styles/Welcome.module.css";
 
 const Welcome: React.FC = () => {
     return (

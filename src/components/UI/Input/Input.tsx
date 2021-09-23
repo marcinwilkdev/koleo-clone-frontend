@@ -1,5 +1,7 @@
 import React from "react";
+
 import { UseInputHook } from "../../../hooks/use-input";
+
 import classes from "./styles/Input.module.css";
 
 export interface InputInterface {

@@ -1,5 +1,7 @@
 import React from "react";
+
 import { ISavedCity } from "../../models/city";
+
 import classes from "./styles/ConnectionInfo.module.css";
 
 interface CityWithDate {
@@ -23,7 +25,11 @@ const generateTravelTimeString = (departureDate: Date, arrivalDate: Date) => {
     const travelTimeHours = Math.floor(travelTimeInMinutes / 60);
     const travelTimeMinutes = travelTimeInMinutes - travelTimeHours * 60;
 
-    const travelTimeString = `${travelTimeHours}h${travelTimeMinutes}`;
+    let travelTimeString = `${travelTimeHours}h${travelTimeMinutes}`;
+
+    if (travelTimeHours === 0) {
+        travelTimeString = travelTimeMinutes + "min";
+    }
 
     return travelTimeString;
 };
@@ -61,7 +67,7 @@ const ConnectionInfo: React.FC<Props> = ({
                 <p>{trainType}</p>
             </div>
             <div className={classes.travelTime}>{travelTimeString}</div>
-            <div>{price.toFixed(2)}zł</div>
+            <div>{price.toFixed(2)}zł(dummy)</div>
         </div>
     );
 };

@@ -1,6 +1,8 @@
 import React from "react";
+
 import { ISavedTicket } from "../../../models/ticket";
 import Title from "../../UI/Title/Title";
+
 import classes from "./styles/MyOrdersTicket.module.css";
 
 const MyOrdersTicket: React.FC<ISavedTicket> = ({

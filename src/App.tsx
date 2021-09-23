@@ -1,11 +1,13 @@
 import React, { Fragment, useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
+
+import authContext from "./store/auth-context";
+
 import Header from "./components/Header/Header";
 import Auth from "./pages/Auth";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Profile from "./pages/Profile";
-import authContext from "./store/auth-context";
 
 const App: React.FC = () => {
     const { isLoggedIn } = useContext(authContext);

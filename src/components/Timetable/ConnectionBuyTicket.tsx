@@ -1,5 +1,7 @@
 import React from "react";
+
 import Button from "../UI/Button/Button";
+
 import classes from "./styles/ConnectionBuyTicket.module.css";
 
 interface Props {

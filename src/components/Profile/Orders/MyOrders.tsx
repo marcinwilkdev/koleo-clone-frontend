@@ -1,8 +1,10 @@
 import React from "react";
 import { useLocation } from "react-router";
+
 import Title from "../../UI/Title/Title";
 import MyOrdersPagination from "./MyOrdersPagination";
 import MyOrdersTable from "./MyOrdersTable";
+
 import classes from "./styles/MyOrders.module.css";
 
 const MyOrders: React.FC = () => {

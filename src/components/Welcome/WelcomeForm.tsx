@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
+
 import useHttp from "../../hooks/use-http";
 import useInput from "../../hooks/use-input";
 import { ISavedCity } from "../../models/city";
+
 import Button from "../UI/Button/Button";
 import Title from "../UI/Title/Title";
 import DatePicker, { formattedToday } from "./DatePicker";
-import classes from "./styles/WelcomeForm.module.css";
 import WelcomeFormInput from "./WelcomeFormInput";
+
+import classes from "./styles/WelcomeForm.module.css";
 interface GetCitiesResponseBody {
     message: string;
     cities: ISavedCity[];

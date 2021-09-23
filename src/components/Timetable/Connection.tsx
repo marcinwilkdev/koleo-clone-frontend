@@ -1,11 +1,14 @@
 import React, { Fragment, useContext, useState } from "react";
 import { useHistory } from "react-router";
+
 import useHttp from "../../hooks/use-http";
 import { ISavedConnection } from "../../models/connection";
 import authContext from "../../store/auth-context";
+
 import ConnectionAdditionalInfo from "./ConnectionAdditionalInfo";
 import ConnectionBuyTicket from "./ConnectionBuyTicket";
 import ConnectionInfo from "./ConnectionInfo";
+
 import classes from "./styles/Connection.module.css";
 
 export interface CreateTicketRequestBody {
@@ -43,7 +46,7 @@ const Connection: React.FC<ISavedConnection> = ({ cities, trainType }) => {
             ticketType: "jednorazowy",
         };
 
-        const data = await sendRequest(
+        await sendRequest(
             "/tickets/create",
             "PUT",
             requestBody,

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
+
 import useHttp from "../../hooks/use-http";
 import { ISavedConnection } from "../../models/connection";
+
 import Connection from "./Connection";
 
 import classes from "./styles/Timetable.module.css";

@@ -39,3 +39,9 @@
 .tableHeader h3:nth-child(6) {
     width: 30%;
 }
+
+.noTickets {
+    text-align: center;
+
+    font-size: 150%;
+}

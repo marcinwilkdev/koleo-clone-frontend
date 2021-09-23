@@ -1,8 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import useHttp from "../../../hooks/use-http";
+
 import { ISavedTicket } from "../../../models/ticket";
 import authContext from "../../../store/auth-context";
+
 import MyOrdersTicket from "./MyOrdersTicket";
+
 import classes from "./styles/MyOrdersTable.module.css";
 
 interface Props {
@@ -43,14 +46,21 @@ const MyOrdersTable: React.FC<Props> = ({ pageNumber }) => {
 
     return (
         <div className={classes.table}>
-            <div className={classes.tableHeader}>
-                <h3>DATA WYJAZDU</h3>
-                <h3>STACJE WYJAZDU I PRZYJAZDU</h3>
-                <h3>BILET</h3>
-                <h3>RODZAJ POCIAGU</h3>
-                <h3>CENA</h3>
-                <h3>AKCJE</h3>
-            </div>
+            {tickets.length > 0 && (
+                <div className={classes.tableHeader}>
+                    <h3>DATA WYJAZDU</h3>
+                    <h3>STACJE WYJAZDU I PRZYJAZDU</h3>
+                    <h3>BILET</h3>
+                    <h3>RODZAJ POCIAGU</h3>
+                    <h3>CENA</h3>
+                    <h3>AKCJE (not implemented)</h3>
+                </div>
+            )}
+            {tickets.length === 0 && (
+                <div className={classes.noTickets}>
+                    <h3>Brak biletów</h3>
+                </div>
+            )}
             {tickets.map((ticket) => (
                 <MyOrdersTicket key={ticket.id} {...ticket} />
             ))}

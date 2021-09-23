@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
+
 import { UseInputHook } from "../../hooks/use-input";
 import { ISavedCity } from "../../models/city";
+
 import Input from "../UI/Input/Input";
+
 import classes from "./styles/WelcomeFormInput.module.css";
 
 interface CityOptionProps {

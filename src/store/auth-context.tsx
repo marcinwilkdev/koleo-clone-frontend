@@ -19,8 +19,6 @@ const authContext = createContext<AuthContextInterface>({
 });
 
 export const AuthContextProvider: React.FC = ({ children }) => {
-    // ADD TIMEOUT FOR TOKEN
-
     const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
     const [userData, setUserData] = useState<string>("");
     const [token, setToken] = useState<string>("");

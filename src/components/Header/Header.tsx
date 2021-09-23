@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+
 import authContext from "../../store/auth-context";
+
 import classes from "./styles/Header.module.css";
 
 const Header: React.FC = () => {

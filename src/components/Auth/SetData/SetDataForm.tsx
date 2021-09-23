@@ -112,7 +112,7 @@ const SetDataForm: React.FC<Props> = ({ discount }) => {
                     onChange={monthHook.changeHandler}
                     onBlur={monthHook.blurHandler}
                 >
-                    <option value="" disabled selected>
+                    <option value="" disabled>
                         * Miesiąc
                     </option>
                     <option value="1">stycznia</option>
