@@ -1,0 +1,29 @@
+.additionalInfo {
+    display: flex;
+
+    padding: 1.5rem 0;
+
+    background-color: #F4F4F4;
+
+    font-size: 80%;
+}
+
+.additionalInfo > div {
+    text-align: center;
+}
+
+.additionalInfo > div:nth-child(1) {
+    width: 42%;
+}
+
+.additionalInfo > div:nth-child(2) {
+    width: 16%;
+}
+
+.additionalInfo > div:nth-child(3) {
+    width: 16%;
+}
+
+.additionalInfo > div:nth-child(4) {
+    width: 26%;
+}

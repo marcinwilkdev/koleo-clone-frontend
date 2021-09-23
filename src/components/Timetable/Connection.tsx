@@ -1,11 +1,11 @@
 import React from "react";
 import { ISavedConnection } from "../../models/connection";
+import ConnectionAdditionalInfo from "./ConnectionAdditionalInfo";
+import ConnectionBuyTicket from "./ConnectionBuyTicket";
+import ConnectionInfo from "./ConnectionInfo";
 import classes from "./styles/Connection.module.css";
 
-const Connection: React.FC<ISavedConnection> = ({
-    cities,
-    trainType,
-}) => {
+const Connection: React.FC<ISavedConnection> = ({ cities, trainType }) => {
     const departureCity = cities[0];
     const arrivalCity = cities[cities.length - 1];
 
@@ -27,11 +27,15 @@ const Connection: React.FC<ISavedConnection> = ({
 
     return (
         <div className={classes.connection}>
-            <div>{departureTime}</div>
-            <div>{arrivalTime}</div>
-            <div className={classes.trainType}><p>{trainType}</p></div>
-            <div className={classes.travelTime}>{travelTimeString}</div>
-            <div>{price.toFixed(2)}zł</div>
+            <ConnectionInfo
+                arrivalTime={arrivalTime}
+                departureTime={departureTime}
+                price={price}
+                trainType={trainType}
+                travelTimeString={travelTimeString}
+            />
+            <ConnectionAdditionalInfo />
+            <ConnectionBuyTicket price={price} />
         </div>
     );
 };

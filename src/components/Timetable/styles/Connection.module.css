@@ -1,8 +1,4 @@
 .connection {
-    display: flex;
-
-    align-items: center;
-
     font-size: 125%;
     font-weight: 500;
 
@@ -11,54 +7,6 @@
     cursor: pointer;
 }
 
-.connection:hover {
-    background-color: #f0f0f0;
-}
-
 .connection:last-child {
     border-bottom: none;
-}
-
-.connection > div {
-    text-align: center;
-}
-
-.connection > div:nth-child(1) {
-    width: 26%;
-}
-
-.connection > div:nth-child(2) {
-    width: 16%;
-}
-
-.connection > div:nth-child(3) {
-    width: 16%;
-}
-
-.connection > div:nth-child(4) {
-    width: 16%;
-}
-
-.connection > div:nth-child(5) {
-    width: 26%;
-}
-
-.trainType {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.trainType p {
-    background-color: orange;
-    color: white;
-
-    font-size: 50%;
-
-    margin: 0;
-    padding: 0.25rem 1.5rem;
-}
-
-.travelTime {
-    padding: 1.5rem 0;
 }
