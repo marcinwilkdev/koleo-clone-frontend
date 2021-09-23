@@ -63,25 +63,21 @@ const WelcomeFormInput: React.FC<Props> = ({
 
     const filteredCities = filterCities(cities, hook.value);
 
-    let compiledOptionsClassName = classes.options;
-
-    if (showOptions && filteredCities.length > 0) {
-        compiledOptionsClassName += " " + classes.show;
-    }
-
     return (
         <div className={classes.input}>
             <Input name={name} placeholder={placeholder} hook={hook} />
-            <div className={compiledOptionsClassName}>
-                {filteredCities.map((city) => (
-                    <CityOption
-                        key={city.id}
-                        replaceValue={hook.replaceValue}
-                        hideOptions={hideOptions}
-                        name={city.name}
-                    />
-                ))}
-            </div>
+            {showOptions && filteredCities.length > 0 && (
+                <div className={classes.options}>
+                    {filteredCities.map((city) => (
+                        <CityOption
+                            key={city.id}
+                            replaceValue={hook.replaceValue}
+                            hideOptions={hideOptions}
+                            name={city.name}
+                        />
+                    ))}
+                </div>
+            )}
         </div>
     );
 };

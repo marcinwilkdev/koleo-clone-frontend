@@ -19,13 +19,8 @@
     width: 100%;
 
     background-color: white;
-    opacity: 0;
 
     border: 1px solid lightgray;
-}
-
-.show {
-    opacity: 1;
 }
 
 .option {
