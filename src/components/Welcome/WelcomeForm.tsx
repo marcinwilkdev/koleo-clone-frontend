@@ -2,26 +2,22 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import useHttp from "../../hooks/use-http";
 import useInput from "../../hooks/use-input";
+import { ISavedCity } from "../../models/city";
 import Button from "../UI/Button/Button";
 import Title from "../UI/Title/Title";
 import DatePicker, { formattedToday } from "./DatePicker";
 import classes from "./styles/WelcomeForm.module.css";
 import WelcomeFormInput from "./WelcomeFormInput";
-
-export interface City {
-    id: string;
-    name: string;
-}
 interface GetCitiesResponseBody {
     message: string;
-    cities: City[];
+    cities: ISavedCity[];
 }
 
 const WelcomeForm: React.FC = () => {
     const history = useHistory();
     const { sendRequest } = useHttp();
 
-    const [cities, setCities] = useState<City[]>([]);
+    const [cities, setCities] = useState<ISavedCity[]>([]);
 
     const fromHook = useInput((value) => value.length >= 1);
     const toHook = useInput((value) => value.length >= 1);

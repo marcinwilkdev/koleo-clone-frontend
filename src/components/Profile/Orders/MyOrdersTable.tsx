@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import useHttp from "../../../hooks/use-http";
-import { Ticket } from "../../../models/ticket";
+import { ISavedTicket } from "../../../models/ticket";
 import authContext from "../../../store/auth-context";
 import MyOrdersTicket from "./MyOrdersTicket";
 import classes from "./styles/MyOrdersTable.module.css";
@@ -11,14 +11,14 @@ interface Props {
 
 interface GetTicketsResponseBody {
     message: string;
-    tickets: Ticket[];
+    tickets: ISavedTicket[];
 }
 
 const MyOrdersTable: React.FC<Props> = ({ pageNumber }) => {
     const { sendRequest } = useHttp();
     const { token, isLoggedIn } = useContext(authContext);
 
-    const [tickets, setTickets] = useState<Ticket[]>([]);
+    const [tickets, setTickets] = useState<ISavedTicket[]>([]);
 
     useEffect(() => {
         const fetchTickets = async () => {

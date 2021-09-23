@@ -1,9 +1,9 @@
 import React from "react";
-import { Ticket } from "../../../models/ticket";
+import { ISavedTicket } from "../../../models/ticket";
 import Title from "../../UI/Title/Title";
 import classes from "./styles/MyOrdersTicket.module.css";
 
-const MyOrdersTicket: React.FC<Ticket> = ({
+const MyOrdersTicket: React.FC<ISavedTicket> = ({
     date,
     departureCity,
     arrivalCity,

@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { UseInputHook } from "../../hooks/use-input";
+import { ISavedCity } from "../../models/city";
 import Input from "../UI/Input/Input";
 import classes from "./styles/WelcomeFormInput.module.css";
-import { City } from "./WelcomeForm";
 
 interface CityOptionProps {
     replaceValue: (value: string) => void;
     hideOptions: () => void;
     name: string;
 }
-
 interface Props {
     hook: UseInputHook<HTMLInputElement>;
-    cities: City[];
+    cities: ISavedCity[];
     name: string;
     placeholder: string;
 }
@@ -34,7 +33,7 @@ const CityOption: React.FC<CityOptionProps> = ({
     );
 };
 
-const filterCities = (cities: City[], value: string) => {
+const filterCities = (cities: ISavedCity[], value: string) => {
     return cities
         .filter((city) => {
             const lowerCaseCityName = city.name.toLocaleLowerCase();

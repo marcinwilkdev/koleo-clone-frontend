@@ -20,8 +20,6 @@ const App: React.FC = () => {
         }
     }
 
-    console.log(loginStatus);
-
     return (
         <Fragment>
             <Header />

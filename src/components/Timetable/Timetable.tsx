@@ -1,17 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
+import useHttp from "../../hooks/use-http";
+import { ISavedConnection } from "../../models/connection";
 import Connection from "./Connection";
 
 import classes from "./styles/Timetable.module.css";
+interface FindConnectionsResponseBody {
+    message: string;
+    connections: ISavedConnection[];
+}
 
 const Timetable: React.FC = () => {
+    const [connections, setConnections] = useState<ISavedConnection[]>([]);
+
+    console.log(connections);
+
+    const { sendRequest } = useHttp();
     const location = useLocation();
 
     const queryParams = new URLSearchParams(location.search);
 
     const fromParam = queryParams.get("from");
     const toParam = queryParams.get("to");
-    const dateParam = queryParams.get("date");
+    // const dateParam = queryParams.get("date");
+
+    useEffect(() => {
+        const fetchConnections = async () => {
+            const queryString = location.search;
+
+            const connections = (await sendRequest(
+                "/connections/find" + queryString
+            )) as FindConnectionsResponseBody;
+
+            setConnections(connections.connections);
+        };
+
+        fetchConnections();
+    }, [sendRequest, location.search]);
 
     const departureCity = fromParam?.toLocaleUpperCase();
     const arrivalCity = toParam?.toLocaleUpperCase();
@@ -19,8 +44,8 @@ const Timetable: React.FC = () => {
     const today = new Date();
     const fiveDaysFromNow = new Date();
 
-    fiveDaysFromNow.setHours(today.getHours() + 2)
-    fiveDaysFromNow.setMinutes(today.getMinutes() + 29)
+    fiveDaysFromNow.setHours(today.getHours() + 2);
+    fiveDaysFromNow.setMinutes(today.getMinutes() + 29);
 
     return (
         <div>
@@ -31,8 +56,9 @@ const Timetable: React.FC = () => {
                 <p>CZAS PODROŻY</p>
                 <p>CENA DLA CIEBIE</p>
             </div>
-            <Connection departureDate={today} arrivalDate={fiveDaysFromNow} price={5.99} trainType="IC" />
-            <Connection departureDate={today} arrivalDate={fiveDaysFromNow} price={5.99} trainType="IC" />
+            {connections.map((connection) => (
+                <Connection {...connection} />
+            ))}
         </div>
     );
 };

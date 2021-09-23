@@ -1,19 +1,19 @@
 import React from "react";
+import { ISavedConnection } from "../../models/connection";
 import classes from "./styles/Connection.module.css";
 
-interface Props {
-    departureDate: Date;
-    arrivalDate: Date;
-    trainType: string;
-    price: number;
-}
-
-const Connection: React.FC<Props> = ({
-    departureDate,
-    arrivalDate,
+const Connection: React.FC<ISavedConnection> = ({
+    cities,
     trainType,
-    price,
 }) => {
+    const departureCity = cities[0];
+    const arrivalCity = cities[cities.length - 1];
+
+    const departureDate = new Date(departureCity.date);
+    const arrivalDate = new Date(arrivalCity.date);
+
+    const price = 5.99;
+
     const departureTime = `${departureDate.getHours()}:${departureDate.getMinutes()}`;
     const arrivalTime = `${arrivalDate.getHours()}:${arrivalDate.getMinutes()}`;
 
@@ -24,9 +24,6 @@ const Connection: React.FC<Props> = ({
     const travelTimeMinutes = travelTimeInMinutes - travelTimeHours * 60;
 
     const travelTimeString = `${travelTimeHours}h${travelTimeMinutes}`;
-
-    console.log(departureDate);
-    console.log(arrivalDate);
 
     return (
         <div className={classes.connection}>

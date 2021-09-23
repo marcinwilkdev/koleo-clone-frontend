@@ -1,4 +1,4 @@
-export interface Ticket {
+export interface ISavedTicket {
     id: string;
     date: string;
     departureCity: string;
@@ -7,3 +7,4 @@ export interface Ticket {
     trainType: string;
     price: number;
 }
+
