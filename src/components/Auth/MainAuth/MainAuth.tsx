@@ -31,7 +31,7 @@ const MainAuth: React.FC = () => {
                     <Route path="/auth/signup" exact>
                         <Signup />
                     </Route>
-                    <Route path="/auth/">
+                    <Route path="/auth">
                         <Redirect to="/not-found" />
                     </Route>
                 </Switch>

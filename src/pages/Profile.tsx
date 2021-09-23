@@ -13,7 +13,7 @@ const Profile: React.FC = () => {
                 <Route path="/profile/my-data" exact/>
                 <Route path="/profile/finances" exact/>
                 <Route path="/profile/settings" exact/>
-                <Route path="/profile/">
+                <Route path="/profile">
                     <Redirect to="/not-found" />
                 </Route>
             </Switch>

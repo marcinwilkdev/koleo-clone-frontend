@@ -47,7 +47,7 @@ const WelcomeForm: React.FC = () => {
         if (!fromHook.isReplaced || !toHook.isReplaced) return;
 
         history.push(
-            `/timetable?from=${fromHook.value}&to=${toHook.value}&date=${dateHook.value}`
+            `/index/timetable?from=${fromHook.value}&to=${toHook.value}&date=${dateHook.value}`
         );
     };
 

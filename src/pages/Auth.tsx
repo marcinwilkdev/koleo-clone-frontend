@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Route, Switch } from "react-router";
+import { Redirect, Route, Switch } from "react-router";
 import DiscountChoice from "../components/Auth/DiscountChoice/DiscountChoice";
 import MainAuth from "../components/Auth/MainAuth/MainAuth";
 import SetData from "../components/Auth/SetData/SetData";
@@ -23,6 +23,11 @@ const Auth: React.FC = () => {
                     <SetData discount={discount} />
                 </Route>
                 {!isLoggedIn && <Route path="/auth" component={MainAuth} />}
+                {isLoggedIn && (
+                    <Route path="/auth">
+                        <Redirect to="/not-found" />
+                    </Route>
+                )}
             </Switch>
         </SplitLayout>
     );
