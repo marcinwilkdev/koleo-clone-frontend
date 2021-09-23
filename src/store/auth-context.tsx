@@ -26,19 +26,29 @@ export const AuthContextProvider: React.FC = ({ children }) => {
     useEffect(() => {
         const token = localStorage.getItem("token");
         const userData = localStorage.getItem("userData");
+        const expiresIn = localStorage.getItem("expiresIn");
 
-        if (token) {
-            setIsLoggedIn(true);
-            setToken(token);
-            setUserData(userData || "User");
-        } else {
-            setIsLoggedIn(false);
+        if (!token || !expiresIn || new Date(expiresIn) < new Date()) {
+            logout();
+            return;
         }
+
+        setIsLoggedIn(true);
+        setToken(token);
+        setUserData(userData || "User");
+
+        const leftTime = new Date(expiresIn).getTime() - new Date().getTime();
+
+        console.log(leftTime);
+
+        const logoutTimeout = setTimeout(() => logout(), leftTime);
+
+        return () => clearTimeout(logoutTimeout);
     }, []);
 
     const changeUserData = (userData: string) => {
         setUserData(userData);
-        
+
         localStorage.setItem("userData", userData);
     };
 
@@ -47,8 +57,14 @@ export const AuthContextProvider: React.FC = ({ children }) => {
         setUserData(userData);
         setToken(token);
 
+        const expiresIn = new Date();
+        expiresIn.setHours(expiresIn.getHours() + 1);
+
+        localStorage.setItem("expiresIn", expiresIn.toISOString());
         localStorage.setItem("token", token);
         localStorage.setItem("userData", userData);
+
+        setTimeout(() => logout(), 3600000);
     };
 
     const logout = () => {
@@ -56,6 +72,7 @@ export const AuthContextProvider: React.FC = ({ children }) => {
         setUserData("");
         setToken("");
 
+        localStorage.removeItem("expiresIn");
         localStorage.removeItem("token");
         localStorage.removeItem("userData");
     };
