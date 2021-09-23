@@ -5,7 +5,7 @@ export interface ISavedConnection {
     cities: {
         city: ISavedCity;
         date: Date;
+        price: number;
     }[];
     trainType: string;
-    dateString: string;
 }

@@ -34,6 +34,10 @@ const Connection: React.FC<ISavedConnection> = ({ cities, trainType }) => {
     const departureCity = cities[0];
     const arrivalCity = cities[cities.length - 1];
 
+    const calculatedPrice = cities
+        .slice(0, cities.length - 1)
+        .reduce((prev, next) => prev + next.price, 0);
+
     const price = 5.99;
 
     const buyTicket = async () => {
@@ -41,17 +45,12 @@ const Connection: React.FC<ISavedConnection> = ({ cities, trainType }) => {
             date: departureCity.date,
             departureCity: departureCity.city.name,
             arrivalCity: arrivalCity.city.name,
-            price: price,
+            price: calculatedPrice,
             trainType: trainType,
             ticketType: "jednorazowy",
         };
 
-        await sendRequest(
-            "/tickets/create",
-            "PUT",
-            requestBody,
-            token
-        );
+        await sendRequest("/tickets/create", "PUT", requestBody, token);
 
         history.push("/profile/my-orders");
     };
@@ -61,7 +60,7 @@ const Connection: React.FC<ISavedConnection> = ({ cities, trainType }) => {
             <ConnectionInfo
                 arrivalCity={arrivalCity}
                 departureCity={departureCity}
-                price={price}
+                price={calculatedPrice}
                 trainType={trainType}
                 opened={opened}
                 onClick={toggleOpened}

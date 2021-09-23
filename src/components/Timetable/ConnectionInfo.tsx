@@ -67,7 +67,7 @@ const ConnectionInfo: React.FC<Props> = ({
                 <p>{trainType}</p>
             </div>
             <div className={classes.travelTime}>{travelTimeString}</div>
-            <div>{price.toFixed(2)}zł(dummy)</div>
+            <div>{price.toFixed(2)}zł</div>
         </div>
     );
 };

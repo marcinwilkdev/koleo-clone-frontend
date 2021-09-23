@@ -1,2 +1,1 @@
-add timer for logout
 change datepicker to hourpicker
