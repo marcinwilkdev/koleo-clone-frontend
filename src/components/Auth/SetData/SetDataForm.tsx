@@ -59,20 +59,22 @@ const SetDataForm: React.FC<Props> = ({ discount }) => {
             firstName: nameHook.value,
             lastName: lastNameHook.value,
             dateOfBirth: new Date(
-                +monthHook.value,
                 +yearHook.value,
+                +monthHook.value,
                 +dayHook.value
             ).toISOString(),
         };
 
-        const data = await sendRequest(
+        console.log(requestBody.dateOfBirth);
+
+        const data = (await sendRequest(
             "/auth/set-data",
             "PUT",
             requestBody,
             token
-        ) as SetDataResponseBody;
+        )) as SetDataResponseBody;
 
-        if(!data || !data.userData) return;
+        if (!data || !data.userData) return;
 
         changeUserData(data.userData);
 
