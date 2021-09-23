@@ -2,7 +2,7 @@ import React, { Fragment, useContext, useState } from "react";
 import { useHistory } from "react-router";
 
 import useHttp from "../../hooks/use-http";
-import { ISavedConnection } from "../../models/connection";
+import { ISavedConnection, ISavedConnectionWithPrice } from "../../models/connection";
 import authContext from "../../store/auth-context";
 
 import ConnectionAdditionalInfo from "./ConnectionAdditionalInfo";
@@ -20,7 +20,7 @@ export interface CreateTicketRequestBody {
     price: number;
 }
 
-const Connection: React.FC<ISavedConnection> = ({ cities, trainType }) => {
+const Connection: React.FC<ISavedConnectionWithPrice> = ({ cities, trainType, price }) => {
     const history = useHistory();
     const { token } = useContext(authContext);
     const { sendRequest } = useHttp();
@@ -34,18 +34,12 @@ const Connection: React.FC<ISavedConnection> = ({ cities, trainType }) => {
     const departureCity = cities[0];
     const arrivalCity = cities[cities.length - 1];
 
-    const calculatedPrice = cities
-        .slice(0, cities.length - 1)
-        .reduce((prev, next) => prev + next.price, 0);
-
-    const price = 5.99;
-
     const buyTicket = async () => {
         const requestBody: CreateTicketRequestBody = {
             date: departureCity.date,
             departureCity: departureCity.city.name,
             arrivalCity: arrivalCity.city.name,
-            price: calculatedPrice,
+            price: price,
             trainType: trainType,
             ticketType: "jednorazowy",
         };
@@ -60,7 +54,7 @@ const Connection: React.FC<ISavedConnection> = ({ cities, trainType }) => {
             <ConnectionInfo
                 arrivalCity={arrivalCity}
                 departureCity={departureCity}
-                price={calculatedPrice}
+                price={price}
                 trainType={trainType}
                 opened={opened}
                 onClick={toggleOpened}

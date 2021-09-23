@@ -1,22 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router";
 
 import useHttp from "../../hooks/use-http";
-import { ISavedConnection } from "../../models/connection";
+import {
+    ISavedConnection,
+    ISavedConnectionWithPrice,
+} from "../../models/connection";
+import authContext from "../../store/auth-context";
 
 import Connection from "./Connection";
 
 import classes from "./styles/Timetable.module.css";
 interface FindConnectionsResponseBody {
     message: string;
-    connections: ISavedConnection[];
+    connections: ISavedConnectionWithPrice[];
 }
 
 const Timetable: React.FC = () => {
-    const [connections, setConnections] = useState<ISavedConnection[]>([]);
+    const [connections, setConnections] = useState<ISavedConnectionWithPrice[]>(
+        []
+    );
 
+    const { token, isLoggedIn } = useContext(authContext);
     const { sendRequest } = useHttp();
     const location = useLocation();
+
+    let fetchedToken = token;
+
+    if (isLoggedIn === null) {
+        fetchedToken = localStorage.getItem("token") || "";
+    }
 
     const queryParams = new URLSearchParams(location.search);
 
@@ -28,7 +41,10 @@ const Timetable: React.FC = () => {
             const queryString = location.search;
 
             const connections = (await sendRequest(
-                "/connections/find" + queryString
+                "/connections/find" + queryString,
+                "GET",
+                {},
+                fetchedToken
             )) as FindConnectionsResponseBody;
 
             setConnections(connections.connections);

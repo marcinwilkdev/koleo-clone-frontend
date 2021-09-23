@@ -65,8 +65,6 @@ const SetDataForm: React.FC<Props> = ({ discount }) => {
             ).toISOString(),
         };
 
-        console.log(requestBody.dateOfBirth);
-
         const data = (await sendRequest(
             "/auth/set-data",
             "PUT",

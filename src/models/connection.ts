@@ -9,3 +9,7 @@ export interface ISavedConnection {
     }[];
     trainType: string;
 }
+
+export interface ISavedConnectionWithPrice extends ISavedConnection {
+    price: number;
+}
