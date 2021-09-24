@@ -1,13 +1,14 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, Suspense } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 import authContext from "./store/auth-context";
 
 import Header from "./components/Header/Header";
-import Auth from "./pages/Auth";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
-import Profile from "./pages/Profile";
+
+const Auth = React.lazy(() => import("./pages/Auth"));
+const Index = React.lazy(() => import("./pages/Index"));
+const NotFound = React.lazy(() => import("./pages/NotFound"));
+const Profile = React.lazy(() => import("./pages/Profile"));
 
 const App: React.FC = () => {
     const { isLoggedIn } = useContext(authContext);
@@ -26,27 +27,33 @@ const App: React.FC = () => {
         <Fragment>
             <Header />
             <main>
-                <Switch>
-                    <Route path="/index" component={Index} />
-                    <Route path="/auth" component={Auth} />
+                <Suspense fallback={<div className="loading"><h1>Loading...</h1></div>}>
+                    <Switch>
+                        <Route path="/index" component={Index} />
+                        <Route path="/auth" component={Auth} />
 
-                    {loginStatus && (
-                        <Route path="/profile" component={Profile} />
-                    )}
+                        {loginStatus && (
+                            <Route path="/profile" component={Profile} />
+                        )}
 
-                    {loginStatus && (
-                        <Route path="/not-found" component={NotFound} exact />
-                    )}
+                        {loginStatus && (
+                            <Route
+                                path="/not-found"
+                                component={NotFound}
+                                exact
+                            />
+                        )}
 
-                    <Route path="/" exact>
-                        <Redirect to="/index" />
-                    </Route>
+                        <Route path="/" exact>
+                            <Redirect to="/index" />
+                        </Route>
 
-                    <Route path="/">
-                        {loginStatus && <Redirect to="/not-found" />}
-                        {!loginStatus && <Redirect to="/auth/signup" />}
-                    </Route>
-                </Switch>
+                        <Route path="/">
+                            {loginStatus && <Redirect to="/not-found" />}
+                            {!loginStatus && <Redirect to="/auth/signup" />}
+                        </Route>
+                    </Switch>
+                </Suspense>
             </main>
         </Fragment>
     );
