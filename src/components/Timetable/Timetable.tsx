@@ -3,7 +3,6 @@ import { useLocation } from "react-router";
 
 import useHttp from "../../hooks/use-http";
 import {
-    ISavedConnection,
     ISavedConnectionWithPrice,
 } from "../../models/connection";
 import authContext from "../../store/auth-context";
@@ -51,7 +50,7 @@ const Timetable: React.FC = () => {
         };
 
         fetchConnections();
-    }, [sendRequest, location.search]);
+    }, [sendRequest, location.search, fetchedToken]);
 
     const departureCity = fromParam?.toLocaleUpperCase();
     const arrivalCity = toParam?.toLocaleUpperCase();

@@ -2,7 +2,7 @@ import React, { Fragment, useContext, useState } from "react";
 import { useHistory } from "react-router";
 
 import useHttp from "../../hooks/use-http";
-import { ISavedConnection, ISavedConnectionWithPrice } from "../../models/connection";
+import { ISavedConnectionWithPrice } from "../../models/connection";
 import authContext from "../../store/auth-context";
 
 import ConnectionAdditionalInfo from "./ConnectionAdditionalInfo";
@@ -12,15 +12,12 @@ import ConnectionInfo from "./ConnectionInfo";
 import classes from "./styles/Connection.module.css";
 
 export interface CreateTicketRequestBody {
-    date: Date;
+    id: string;
     departureCity: string;
     arrivalCity: string;
-    ticketType: string;
-    trainType: string;
-    price: number;
 }
 
-const Connection: React.FC<ISavedConnectionWithPrice> = ({ cities, trainType, price }) => {
+const Connection: React.FC<ISavedConnectionWithPrice> = ({ id, cities, trainType, price }) => {
     const history = useHistory();
     const { token } = useContext(authContext);
     const { sendRequest } = useHttp();
@@ -36,12 +33,9 @@ const Connection: React.FC<ISavedConnectionWithPrice> = ({ cities, trainType, pr
 
     const buyTicket = async () => {
         const requestBody: CreateTicketRequestBody = {
-            date: departureCity.date,
+            id,
             departureCity: departureCity.city.name,
             arrivalCity: arrivalCity.city.name,
-            price: price,
-            trainType: trainType,
-            ticketType: "jednorazowy",
         };
 
         await sendRequest("/tickets/create", "PUT", requestBody, token);
