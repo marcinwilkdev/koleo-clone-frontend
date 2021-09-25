@@ -1,46 +1,85 @@
-# Getting Started with Create React App
+# koleo-clone-frontend
+---
+Frontend for koleo-clone project created with React.js, React-Router and Typescript.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of contents
+---
+* [koleo-clone project](#koleo-clone)
+* [General info](#general-info)
+* [Features](#features)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Inspiration](#inspiration)
 
-## Available Scripts
+## koleo-clone project
+---
+This app is part of koleo-clone project which consist of koleo-clone-frontend and [koleo-clone-backend](https://github.com/marolis1239/koleo-clone-backend) also written by me in Node.js.
 
-In the project directory, you can run:
+You can play with whole project deployed to firebase (frontend) and heroku (backend) by clicking this [URL](https://koleo-clone.web.app/).
 
-### `yarn start`
+Implemented connections:
+* Wrocław Główny - Wrocław Mikołajów - Wrocław Nadodrze - Wrocław Psie Pole
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Project features:
+* Connection dates aren't implemented so you will see the same connections on every date.
+* Connection changes aren't implemented so you have to choose direct route to see connection.
+* If you choose discount for created user you will have 50% discount on your tickets.
+* Resetting password isn't implemented.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## General info
+---
+This project is frontend for koleo-clone project. It provides interface for fetching connections, creating user, authenticating user and fetching user tickets.
 
-### `yarn test`
+![Connections view](./images/connections-view.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
+---
+* auto-complete available cities as options to pick fetched from backend
+* displaying connections fetched from backend
+* managing authentication with jwt tokens and local storage (with auto-logout after 1 hour)
+* buying and displaying tickets by sending requests to backend
+* there is no responsivness implemented so page won't work on mobile devices
+	
+## Technologies
+---
+Project is created with:
+* React.js version: 17.0.2
+* React-router version: 5.2.1
+* Typescript version: 4.1.2
+	
+## Setup
+---
+koleo-clone-frontend requires Node.js v10+ to build and run development server.
 
-### `yarn build`
+To run this project, install it locally using npm or yarn:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+$ npm install
+```
+```
+$ yarn install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To start development server which features auto restart after typescript compile:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+$ npm start
+```
+```
+$ yarn start
+```
 
-### `yarn eject`
+To build project for production:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+$ npm build
+```
+```
+$ yarn build
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Inspiration
+---
+This app is based on popular web application [KOLEO](https://koleo.pl/)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
