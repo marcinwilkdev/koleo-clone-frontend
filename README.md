@@ -19,6 +19,15 @@ You can play with whole project deployed to firebase (frontend) and heroku (back
 
 Implemented connections:
 * Wrocław Główny - Wrocław Mikołajów - Wrocław Nadodrze - Wrocław Psie Pole
+* Wrocław Psie Pole - Wrocław Nadodrze - Wrocław Mikołajów - Wrocław Główny
+* Wrocław Główny - Wrocław Mikołajów - Wrocław Popowice - Wrocław Osobowice
+* Wrocław Osobowice - Wrocław Popowice - Wrocław Mikołajów - Wrocław Główny
+* Wrocław Główny - Wrocław Muchobór - Wrocław Nowy Dwór - Wrocław Żerniki - Wrocław Leśnica
+* Wrocław Leśnica - Wrocław Żerniki - Wrocław Nowy Dwór - Wrocław Muchobór - Wrocław Główny
+* Wrocław Główny - Wrocław Grabiszyn - Wrocław Zachodni
+* Wrocław Zachodni - Wrocław Grabiszyn - Wrocław Główny
+* Wrocław Główny - Wrocław Muchobór - Wrocław Kuźniki - Wrocław Stadion
+* Wrocław Stadion - Wrocław Kuźniki - Wrocław Muchobór - Wrocław Główny
 
 Project features:
 * Connection dates aren't implemented so you will see the same connections on every date.
