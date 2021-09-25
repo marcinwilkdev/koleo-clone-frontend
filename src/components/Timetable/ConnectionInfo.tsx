@@ -49,11 +49,11 @@ const ConnectionInfo: React.FC<Props> = ({
     const departureDate = new Date(departureCity.date);
     const arrivalDate = new Date(arrivalCity.date);
 
-    const departureTime = `${departureDate.getHours()}:${formatTime(
+    const departureTime = `${formatTime(departureDate.getHours())}:${formatTime(
         departureDate.getMinutes()
     )}`;
-
-    const arrivalTime = `${arrivalDate.getHours()}:${formatTime(
+    
+    const arrivalTime = `${formatTime(arrivalDate.getHours())}:${formatTime(
         arrivalDate.getMinutes()
     )}`;
 
