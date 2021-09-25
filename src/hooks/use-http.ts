@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 
-const DB_URL = "http://localhost:8080";
+const DB_URL = "https://koleo-clone.herokuapp.com";
 
 interface ErrorResponseBody {
     errorMessage: string;
