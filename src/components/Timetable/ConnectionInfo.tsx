@@ -34,6 +34,10 @@ const generateTravelTimeString = (departureDate: Date, arrivalDate: Date) => {
     return travelTimeString;
 };
 
+const formatTime = (time: number) => {
+    return time < 10 ? "0" + time : "" + time;
+};
+
 const ConnectionInfo: React.FC<Props> = ({
     departureCity,
     arrivalCity,
@@ -45,8 +49,13 @@ const ConnectionInfo: React.FC<Props> = ({
     const departureDate = new Date(departureCity.date);
     const arrivalDate = new Date(arrivalCity.date);
 
-    const departureTime = `${departureDate.getHours()}:${departureDate.getMinutes()}`;
-    const arrivalTime = `${arrivalDate.getHours()}:${arrivalDate.getMinutes()}`;
+    const departureTime = `${formatTime(departureDate.getHours())}:${formatTime(
+        departureDate.getMinutes()
+    )}`;
+    
+    const arrivalTime = `${formatTime(arrivalDate.getHours())}:${formatTime(
+        arrivalDate.getMinutes()
+    )}`;
 
     const travelTimeString = generateTravelTimeString(
         departureDate,
