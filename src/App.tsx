@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import authContext from "./store/auth-context";
 
 import Header from "./components/Header/Header";
+import Spinner from "./components/UI/Spinner/Spinner";
 
 const Auth = React.lazy(() => import("./pages/Auth"));
 const Index = React.lazy(() => import("./pages/Index"));
@@ -27,7 +28,13 @@ const App: React.FC = () => {
         <Fragment>
             <Header />
             <main>
-                <Suspense fallback={<div className="loading"><h1>Loading...</h1></div>}>
+                <Suspense
+                    fallback={
+                        <div className="loading">
+                            <Spinner />
+                        </div>
+                    }
+                >
                     <Switch>
                         <Route path="/index" component={Index} />
                         <Route path="/auth" component={Auth} />

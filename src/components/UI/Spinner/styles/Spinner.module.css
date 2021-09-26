@@ -1,0 +1,16 @@
+.spinner {
+    width: 5rem;
+    height: 5rem;
+
+    border-radius: 50%;
+
+    border: 1rem solid lightblue;
+    border-top: 1rem solid #1E1064;
+
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
